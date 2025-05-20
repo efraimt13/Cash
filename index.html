@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cash App - Manage your money, invest, and save">
+    <title>Cash App</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            line-height: 1.5;
+            overflow-y: scroll;
+            -webkit-font-smoothing: antialiased;
+        }
+        .app-container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: #1a1a1a;
+            border-radius: 15px 15px 0 0;
+            overflow: hidden;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background: #1a1a1a;
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #2a2a2a;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+            color: #fff;
+        }
+        .profile-icon {
+            width: 30px;
+            height: 30px;
+            background: #ff2d55;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 14px;
+        }
+        .section {
+            padding: 15px;
+            border-bottom: 1px solid #2a2a2a;
+        }
+        .card {
+            background: #252525;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .card-title {
+            font-size: 14px;
+            color: #999;
+            margin-bottom: 5px;
+        }
+        .card-amount {
+            font-size: 24px;
+            font-weight: 700;
+            color: #fff;
+        }
+        .card-subtext {
+            font-size: 12px;
+            color: #666;
+        }
+        .action-buttons button {
+            background: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin: 0 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+        .action-buttons button:hover {
+            background: #444;
+        }
+        .paychecks-card, .savings-card, .bitcoin-card, .stocks-card {
+            background: #252525;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+        }
+        .icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #00d54b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-size: 16px;
+            color: #fff;
+        }
+        .bitcoin-icon {
+            background: #00a3e0;
+        }
+        .stocks-icon {
+            background: #9b59b6;
+        }
+        .transaction-panel {
+            display: none;
+            padding: 20px 0;
+            text-align: center;
+        }
+        .transaction-panel.active {
+            display: block;
+        }
+        .numeric-pad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .numeric-pad button {
+            background: #333;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            color: #fff;
+            transition: background 0.3s;
+        }
+        .numeric-pad button:hover {
+            background: #444;
+        }
+        #amount {
+            width: 100%;
+            padding: 15px;
+            font-size: 40px;
+            text-align: center;
+            background: #1a1a1a;
+            border: none;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+        .transaction-buttons button {
+            background: #333;
+            color: #fff;
+            border: none;
+            padding: 15px;
+            width: 45%;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        .transaction-buttons button:hover {
+            background: #444;
+        }
+        .activity-search {
+            width: 100%;
+            padding: 10px;
+            background: #333;
+            border: none;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+        .activity-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #2a2a2a;
+        }
+        .activity-item .icon {
+            background: #00d54b;
+        }
+        .card-section {
+            padding: 20px;
+            text-align: center;
+        }
+        .card-section .lock-icon {
+            font-size: 40px;
+            color: #999;
+            margin-bottom: 20px;
+        }
+        .discover-section .offer {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+        }
+        .discover-section .offer img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+        .footer {
+            background: #1a1a1a;
+            padding: 10px;
+            display: flex;
+            justify-content: space-around;
+            border-top: 1px solid #2a2a2a;
+        }
+        .footer button {
+            background: none;
+            border: none;
+            color: #999;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .footer button.active {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="header">
+            <h1>Money</h1>
+            <div class="profile-icon">JD</div>
+        </div>
+
+        <div class="section">
+            <div class="card">
+                <div>
+                    <div class="card-title">Cash balance</div>
+                    <div class="card-amount">.18</div>
+                    <div class="card-subtext">Account: **2275 Routing: **663</div>
+                </div>
+                <span class="icon">></span>
+            </div>
+            <div class="action-buttons">
+                <button onclick="showTransaction('add')">Add money</button>
+                <button onclick="showTransaction('withdraw')">Withdraw</button>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="card paychecks-card">
+                <div>
+                    <div class="card-title">Paychecks</div>
+                    <div class="card-amount">.32</div>
+                    <div class="card-subtext">this month</div>
+                </div>
+                <span class="icon">></span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Save & Invest</h2>
+            <div class="card savings-card">
+                <div>
+                    <div class="card-title">Savings</div>
+                    <div class="card-amount">.00</div>
+                    <div class="card-subtext">1.5% interest</div>
+                </div>
+                <span class="icon">$</span>
+            </div>
+            <div class="card bitcoin-card">
+                <div>
+                    <div class="card-title">Bitcoin</div>
+                    <div class="card-amount">.00</div>
+                    <div class="card-subtext">0.00% today</div>
+                </div>
+                <span class="icon bitcoin-icon">B</span>
+            </div>
+            <div class="card stocks-card">
+                <div>
+                    <div class="card-title">Stocks</div>
+                    <div class="card-amount">.00</div>
+                    <div class="card-subtext"></div>
+                </div>
+                <span class="icon stocks-icon">↑</span>
+            </div>
+        </div>
+
+        <div class="section transaction-panel" id="transactionPanel">
+            <input type="text" id="amount" value="" readonly>
+            <div class="numeric-pad">
+                <button onclick="updateAmount('1')">1</button>
+                <button onclick="updateAmount('2')">2</button>
+                <button onclick="updateAmount('3')">3</button>
+                <button onclick="updateAmount('4')">4</button>
+                <button onclick="updateAmount('5')">5</button>
+                <button onclick="updateAmount('6')">6</button>
+                <button onclick="updateAmount('7')">7</button>
+                <button onclick="updateAmount('8')">8</button>
+                <button onclick="updateAmount('9')">9</button>
+                <button onclick="updateAmount('.')">.</button>
+                <button onclick="updateAmount('0')">0</button>
+                <button onclick="clear
