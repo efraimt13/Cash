@@ -64,9 +64,11 @@
             cursor: pointer;
             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease;
         }
+        .profile-icon:hover {
+            box-shadow: 0 0 10px rgba(255, 45, 85, 0.5);
+        }
         .profile-icon:active {
             transform: scale(0.95);
-            box-shadow: 0 0 8px rgba(255, 45, 85, 0.5);
         }
         .section {
             padding: 20px;
@@ -186,9 +188,9 @@
             background: #333;
             box-shadow: 0 0 8px rgba(0, 213, 75, 0.2);
         }
-        .transaction-panel {
+        .transaction-panel, .popup {
             display: none;
-            background: #121212;
+            background: #1c1c1c;
             position: fixed;
             top: 0;
             left: 0;
@@ -201,15 +203,15 @@
             animation: slideUp 0.4s ease-out;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
         }
-        .transaction-panel.active {
+        .transaction-panel.active, .popup.active {
             display: block;
         }
-        .transaction-header {
+        .popup-header, .transaction-header {
             display: flex;
             justify-content: space-between;
             padding: 20px;
             border-bottom: 1px solid #2a2a2a;
-            background: #121212;
+            background: #1c1c1c;
             position: sticky;
             top: 0;
             z-index: 51;
@@ -234,7 +236,7 @@
             padding: 20px;
             font-size: 70px;
             text-align: center;
-            background: #121212;
+            background: #1c1c1c;
             border: none;
             color: #fff;
             margin: 40px 0 20px;
@@ -453,8 +455,11 @@
             font-size: 14px;
             font-weight: 500;
             transition: background 0.3s ease, transform 0.1s ease, box-shadow 0.2s ease;
-            min-height: 44px;
+            min-height: 48px;
             touch-action: manipulation;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         .card-actions button:hover {
             background: #333;
@@ -469,6 +474,9 @@
         }
         .card-actions button.locked:hover {
             background: #ff4d75;
+        }
+        .card-actions button i {
+            font-size: 16px;
         }
         .nav-bar {
             background: #121212;
@@ -547,6 +555,24 @@
         .spend-item span:first-child {
             color: #a0a0a0;
         }
+        .popup-content {
+            padding: 20px;
+        }
+        .popup-content h2 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+        .popup-content p {
+            font-size: 16px;
+            color: #e0e0e0;
+            margin: 10px 0;
+        }
+        .popup-content p span {
+            color: #00d54b;
+            font-weight: 500;
+        }
         h2, h3 {
             font-size: 18px;
             font-weight: 600;
@@ -573,7 +599,7 @@
 
         <!-- Money Section -->
         <div class="section active" id="moneySection">
-            <div class="card">
+            <div class="card" onclick="showBalanceDetails()">
                 <div>
                     <div class="card-title">Cash Balance</div>
                     <div class="card-amount" id="balance">$15.18</div>
@@ -624,8 +650,10 @@
             </div>
             <div class="card">
                 <div>
-                    <div class="card-title">Stocks</div>
-                    <div class="card-amount">$0.00</div>
+                    <div>
+                        <div class="card-title">Stocks</div>
+                        <div class="card-amount">$0.00</div>
+                    </div>
                 </div>
                 <span class="icon stocks-icon"><i class="fa-solid fa-chart-line"></i></span>
             </div>
@@ -701,8 +729,8 @@
                 </div>
             </div>
             <div class="card-actions">
-                <button onclick="copyCardNumber()">Copy Number</button>
-                <button id="lockButton" class="locked" onclick="toggleCardLock()">Unlock Card</button>
+                <button onclick="copyCardNumber()"><i class="fa-solid fa-copy"></i> Copy Number</button>
+                <button id="lockButton" class="locked" onclick="toggleCardLock()"><i class="fa-solid fa-lock" id="lockButtonIcon"></i> Unlock Card</button>
             </div>
             <div class="card" onclick="goToOffers()">
                 <div>
@@ -839,6 +867,50 @@
             </div>
         </div>
 
+        <!-- Profile Popup -->
+        <div class="popup" id="profilePopup">
+            <div class="popup-header">
+                <button class="close-btn" onclick="hidePopup('profilePopup')">✕</button>
+                <h1>Account Details</h1>
+                <button class="close-btn" style="visibility: hidden;">✕</button>
+            </div>
+            <div class="popup-content">
+                <h2>Profile</h2>
+                <p>Name: <span>Jenny Yair</span></p>
+                <p>Email: <span>jenny.yair@example.com</span></p>
+                <p>Cashtag: <span>$JennyYair</span></p>
+                <p>Joined: <span>January 2023</span></p>
+            </div>
+        </div>
+
+        <!-- Transaction Details Popup -->
+        <div class="popup" id="transactionDetailsPopup">
+            <div class="popup-header">
+                <button class="close-btn" onclick="hidePopup('transactionDetailsPopup')">✕</button>
+                <h1>Transaction Details</h1>
+                <button class="close-btn" style="visibility: hidden;">✕</button>
+            </div>
+            <div class="popup-content" id="transactionDetailsContent">
+                <!-- Dynamically populated -->
+            </div>
+        </div>
+
+        <!-- Balance Details Popup -->
+        <div class="popup" id="balanceDetailsPopup">
+            <div class="popup-header">
+                <button class="close-btn" onclick="hidePopup('balanceDetailsPopup')">✕</button>
+                <h1>Balance Details</h1>
+                <button class="close-btn" style="visibility: hidden;">✕</button>
+            </div>
+            <div class="popup-content">
+                <h2>Account Info</h2>
+                <p>Balance: <span id="popupBalance">$15.18</span></p>
+                <p>Account Number: <span>****9876</span></p>
+                <p>Routing Number: <span>****5432</span></p>
+                <p>Last Updated: <span>May 20, 2025 at 08:24 PM EDT</span></p>
+            </div>
+        </div>
+
         <!-- Navigation Bar -->
         <div class="nav-bar">
             <button class="nav-item active" data-tab="moneySection">
@@ -892,13 +964,49 @@
                     tab === 'activitySection' ? 'Activity' :
                     tab === 'cardSection' ? 'Card' : 'Discover';
                 hideTransaction();
+                hideAllPopups();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         });
 
-        // Profile
+        // Popup Management
+        function showPopup(popupId) {
+            hideAllPopups();
+            document.getElementById(popupId).classList.add('active');
+            document.getElementById('mainContent').style.overflow = 'hidden';
+        }
+
+        function hidePopup(popupId) {
+            document.getElementById(popupId).classList.remove('active');
+            document.getElementById('mainContent').style.overflow = 'auto';
+        }
+
+        function hideAllPopups() {
+            document.querySelectorAll('.popup').forEach(popup => popup.classList.remove('active'));
+        }
+
+        // Profile Popup
         function showProfile() {
-            alert('Account Details:\nName: Jenny Yair\nEmail: jenny.yair@example.com\nCashtag: $JennyYair\nJoined: January 2023');
+            showPopup('profilePopup');
+        }
+
+        // Balance Details Popup
+        function showBalanceDetails() {
+            document.getElementById('popupBalance').textContent = `$${balance.toFixed(2)}`;
+            showPopup('balanceDetailsPopup');
+        }
+
+        // Transaction Details Popup
+        function showTransactionDetails(name) {
+            const tx = transactions.find(t => t.name === name);
+            if (tx) {
+                const content = document.getElementById('transactionDetailsContent');
+                content.innerHTML = `
+                    <h2>${tx.name}</h2>
+                    <p>${tx.fullDetails.split(', ').map(detail => `${detail}<br>`).join('')}</p>
+                `;
+                showPopup('transactionDetailsPopup');
+            }
         }
 
         // Transaction Panel
@@ -1052,7 +1160,10 @@
         function toggleCardLock() {
             isCardLocked = !isCardLocked;
             const lockButton = document.getElementById('lockButton');
-            lockButton.textContent = isCardLocked ? 'Unlock Card' : 'Lock Card';
+            const lockButtonIcon = document.getElementById('lockButtonIcon');
+            lockButton.textContent = isCardLocked ? ' Unlock Card' : ' Lock Card';
+            lockButtonIcon.className = isCardLocked ? 'fa-solid fa-lock' : 'fa-solid fa-unlock';
+            lockButton.prepend(lockButtonIcon);
             lockButton.classList.toggle('locked', isCardLocked);
             document.getElementById('lockIcon').innerHTML = isCardLocked ? '<i class="fa-solid fa-lock"></i>' : '<i class="fa-solid fa-unlock"></i>';
             alert(`Card has been ${isCardLocked ? 'locked' : 'unlocked'}!`);
@@ -1065,11 +1176,6 @@
             }).catch(() => {
                 alert('Failed to copy card number. Please try again.');
             });
-        }
-
-        function showTransactionDetails(name) {
-            const tx = transactions.find(t => t.name === name);
-            if (tx) alert(`Transaction Details:\n${tx.fullDetails}`);
         }
 
         function goToOffers() {
