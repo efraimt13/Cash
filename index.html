@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Cash App Clone - Send, spend, save, and invest">
     <title>Cash App</title>
-    <script src="help.js" ></script>
+       <script src="help.js" ></script>
     <link rel="icon" type="image/x-icon" href="logo.png">
     <script src="https://kit.fontawesome.com/66e3b24af0.js" crossorigin="anonymous"></script>
     <style>
@@ -21,7 +20,7 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
             background: linear-gradient(135deg, #0A0A0A, #121212); /* Deeper, more subtle dark gradient */
             color: #E6E6E6;
-            line-height: 1.6; /* Slightly tighter line height for mobile readability */
+            line-height: 1.5; /* Optimized line height for mobile readability */
             overflow-x: hidden; /* Prevent horizontal scrolling */
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
@@ -30,7 +29,7 @@
 
         /* Main app container */
         .app-container {
-            max-width: 400px;
+            max-width: 400px; /* Standard mobile width */
             margin: 0 auto;
             background: transparent;
             min-height: 100vh;
@@ -45,7 +44,7 @@
         /* Header styles */
         .header {
             background: #121212; /* Slightly darker header */
-            padding: 24px;
+            padding: 20px; /* Reduced padding for mobile */
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -53,49 +52,49 @@
             position: sticky;
             top: 0;
             z-index: 60;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8); /* More pronounced shadow */
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.8); /* More pronounced shadow */
         }
 
         .header h1 {
-            font-size: 26px;
+            font-size: 24px; /* Slightly smaller for mobile */
             font-weight: 800;
             color: #FFF;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.8px; /* Tighter letter spacing */
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Subtle text shadow */
         }
 
         /* Profile icon in header */
         .profile-icon {
-            width: 44px; /* Slightly larger */
-            height: 44px;
+            width: 40px; /* Slightly smaller */
+            height: 40px;
             background: linear-gradient(135deg, #FF407A, #FF8CA1); /* Cash App pink/red gradient */
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #FFF;
-            font-size: 19px; /* Slightly larger font */
+            font-size: 17px; /* Slightly smaller font */
             font-weight: 700;
             cursor: pointer;
             transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease; /* Smoother transition */
-            box-shadow: 0 0 16px rgba(255, 64, 122, 0.7); /* More prominent glow */
+            box-shadow: 0 0 12px rgba(255, 64, 122, 0.7); /* More prominent glow */
             border: 2px solid rgba(255, 255, 255, 0.1); /* Subtle border */
         }
 
         .profile-icon:hover {
-            transform: scale(1.18); /* More pronounced hover */
-            box-shadow: 0 0 25px rgba(255, 64, 122, 0.9);
+            transform: scale(1.15); /* More pronounced hover */
+            box-shadow: 0 0 20px rgba(255, 64, 122, 0.9);
         }
 
         .profile-icon:active {
-            transform: scale(0.92); /* Deeper press effect */
+            transform: scale(0.9); /* Deeper press effect */
             box-shadow: 0 0 8px rgba(255, 64, 122, 0.5);
         }
 
         /* Section styles (for different app screens) */
         .section {
-            padding: 24px;
+            padding: 20px; /* Reduced padding for mobile */
             display: none;
             animation: fadeIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smoother fade-in */
         }
@@ -107,45 +106,45 @@
         /* Card styles */
         .card {
             background: linear-gradient(135deg, #1A1A1A, #222222); /* Darker, more consistent gradient */
-            padding: 22px;
-            margin-bottom: 22px;
-            border-radius: 20px;
+            padding: 20px; /* Reduced padding for mobile */
+            margin-bottom: 18px; /* Tighter margin */
+            border-radius: 18px; /* Slightly smaller border radius */
             display: flex;
             justify-content: space-between;
             align-items: center;
             cursor: pointer;
             transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7); /* Stronger, softer shadow */
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7); /* Stronger, softer shadow */
             backdrop-filter: blur(8px); /* Slightly stronger blur effect */
             border: 1px solid rgba(255, 255, 255, 0.08); /* Subtle light border */
         }
 
         .card:hover {
-            transform: translateY(-6px); /* More lift */
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.8); /* More pronounced shadow on hover */
+            transform: translateY(-5px); /* More lift */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8); /* More pronounced shadow on hover */
         }
 
         .card:active {
-            transform: scale(0.95); /* Deeper press */
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            transform: scale(0.96); /* Deeper press */
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.5);
         }
 
         .card-title {
-            font-size: 16px;
+            font-size: 15px; /* Slightly smaller */
             color: #A0A0A0; /* Slightly darker gray */
-            margin-bottom: 8px; /* Tighter spacing */
+            margin-bottom: 7px; /* Tighter spacing */
             font-weight: 500;
         }
 
         .card-amount {
-            font-size: 42px; /* Slightly larger */
+            font-size: 38px; /* Slightly smaller for mobile */
             font-weight: 800;
             color: #FFF;
-            letter-spacing: -0.8px; /* Tighter letter spacing */
+            letter-spacing: -0.7px; /* Tighter letter spacing */
         }
 
         .card-subtext {
-            font-size: 14px; /* Slightly smaller */
+            font-size: 13px; /* Slightly smaller */
             color: #606060; /* Darker subtext */
             font-weight: 400;
         }
@@ -154,22 +153,22 @@
         .action-buttons {
             display: flex;
             justify-content: space-between;
-            margin-top: 24px;
-            gap: 16px;
+            margin-top: 20px; /* Reduced margin */
+            gap: 12px; /* Reduced gap */
         }
 
         .action-buttons button {
             background: #282828; /* Darker button background */
             color: #FFF;
             border: none;
-            padding: 16px;
-            border-radius: 18px;
-            width: 48%;
+            padding: 14px; /* Reduced padding */
+            border-radius: 16px; /* Slightly smaller border radius */
+            width: 49%; /* Adjusted width for smaller gap */
             cursor: pointer;
-            font-size: 18px;
+            font-size: 16px; /* Smaller font */
             font-weight: 700;
             transition: background 0.3s ease, transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
-            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.6); /* Softer shadow */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); /* Softer shadow */
             text-transform: uppercase;
             letter-spacing: 0.5px;
             border: 1px solid rgba(255, 255, 255, 0.05);
@@ -177,21 +176,21 @@
 
         .action-buttons button:hover {
             background: #353535; /* Lighter on hover */
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 7px 22px rgba(0, 0, 0, 0.7);
         }
 
         .action-buttons button:active {
-            transform: scale(0.93); /* More pronounced press */
+            transform: scale(0.95); /* More pronounced press */
             background: #404040;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
         }
 
         /* Contact list for Discover/Activity sections */
         .contact-list {
             display: flex;
             overflow-x: auto;
-            padding: 12px 0;
-            gap: 16px;
+            padding: 10px 0; /* Reduced padding */
+            gap: 14px; /* Reduced gap */
             -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
             scrollbar-width: none; /* Hide scrollbar for Firefox */
             -ms-overflow-style: none;  /* Hide scrollbar for IE and Edge */
@@ -202,20 +201,20 @@
         }
 
         .contact-item {
-            width: 48px; /* Slightly larger */
-            height: 48px;
+            width: 44px; /* Slightly smaller */
+            height: 44px;
             border-radius: 50%;
             background: #00C853; /* Brighter Cash App green */
             display: flex;
             align-items: center;
             justify-content: center;
             color: #000;
-            font-size: 22px; /* Larger font */
+            font-size: 20px; /* Slightly smaller font */
             font-weight: 700;
             flex-shrink: 0; /* Prevent shrinking */
             cursor: pointer;
             transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
-            box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
@@ -228,31 +227,31 @@
         .contact-item.apple-icon { background: #D32F2F; color: #FFF; } /* Apple red */
 
         .contact-item:hover {
-            transform: scale(1.18);
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            transform: scale(1.15);
+            box-shadow: 0 0 18px rgba(0, 0, 0, 0.5);
         }
 
         .contact-item:active {
-            transform: scale(0.92);
+            transform: scale(0.93);
         }
 
         /* Offer list item styles */
         .offer {
             display: flex;
             align-items: center;
-            padding: 20px 0;
+            padding: 18px 0; /* Reduced padding */
             border-bottom: 1px solid #252525;
             transition: background 0.3s ease, transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             cursor: pointer;
         }
 
         .offer .contact-item {
-            margin-right: 20px;
+            margin-right: 18px; /* Reduced margin */
             box-shadow: none; /* No shadow on offer contact items */
         }
 
         .offer span {
-            font-size: 17px;
+            font-size: 16px; /* Slightly smaller */
             color: #E6E6E6;
             flex-grow: 1;
             font-weight: 500;
@@ -260,11 +259,11 @@
 
         .offer:hover {
             background: rgba(40, 40, 40, 0.5); /* Subtle highlight */
-            transform: translateX(8px); /* More pronounced slide */
+            transform: translateX(6px); /* More pronounced slide */
         }
 
         .offer:active {
-            transform: scale(0.98);
+            transform: scale(0.99);
             background: rgba(50, 50, 50, 0.6);
         }
 
@@ -273,15 +272,15 @@
             background: #282828;
             color: #FFF;
             border: none;
-            padding: 16px;
-            border-radius: 18px;
+            padding: 14px; /* Reduced padding */
+            border-radius: 16px; /* Slightly smaller border radius */
             width: 100%;
-            margin-top: 24px;
+            margin-top: 20px; /* Reduced margin */
             cursor: pointer;
-            font-size: 18px;
+            font-size: 16px; /* Smaller font */
             font-weight: 700;
             transition: background 0.3s ease, transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
-            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
             text-transform: uppercase;
             letter-spacing: 0.5px;
             border: 1px solid rgba(255, 255, 255, 0.05);
@@ -289,13 +288,13 @@
 
         .show-more:hover {
             background: #353535;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 7px 22px rgba(0, 0, 0, 0.7);
         }
 
         .show-more:active {
-            transform: scale(0.95);
+            transform: scale(0.96);
             background: #404040;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
         }
 
         /* Activity item styles */
@@ -303,14 +302,14 @@
             display: flex;
             align-items: center; /* Align items vertically */
             justify-content: space-between;
-            padding: 20px 0;
+            padding: 18px 0; /* Reduced padding */
             border-bottom: 1px solid #252525;
             transition: background 0.3s ease, transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             cursor: pointer;
         }
 
         .activity-item .contact-item {
-            margin-right: 20px;
+            margin-right: 18px; /* Reduced margin */
             flex-shrink: 0; /* Prevent shrinking */
             box-shadow: none; /* No shadow on activity contact items */
         }
@@ -320,80 +319,103 @@
         }
 
         .activity-item .card-subtext {
-            margin-top: 6px; /* Tighter spacing */
+            margin-top: 5px; /* Tighter spacing */
         }
 
         .activity-item:hover {
             background: rgba(40, 40, 40, 0.5);
-            transform: translateX(8px);
+            transform: translateX(6px);
         }
 
         .activity-item:active {
-            transform: scale(0.98);
+            transform: scale(0.99);
             background: rgba(50, 50, 50, 0.6);
         }
 
         /* Card image for physical card display */
         .card-image {
             background: linear-gradient(135deg, #FF407A, #9B59B6); /* Cash App card gradient */
-            padding: 30px;
-            border-radius: 20px;
+            width: 90%; /* Responsive width */
+            max-width: 340px; /* Max width for card */
+            aspect-ratio: 1.586; /* Standard credit card aspect ratio (85.6mm x 53.98mm) */
+            margin: 24px auto; /* Center the card */
+            padding: 20px; /* Adjusted padding */
+            border-radius: 15px; /* Slightly less rounded for a real card feel */
             color: #FFF;
-            text-align: center;
-            margin: 24px 0;
             position: relative;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9); /* Stronger, more diffused shadow */
             transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;
             backdrop-filter: blur(10px); /* Stronger blur */
             border: 1px solid rgba(255, 255, 255, 0.15); /* More visible border */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
         }
 
         .card-image:hover {
-            transform: scale(1.05); /* More pronounced scale */
+            transform: scale(1.03); /* Slightly less pronounced scale for card */
             box-shadow: 0 15px 45px rgba(0, 0, 0, 0.95);
         }
 
-        .card-image .card-details {
-            font-size: 24px; /* Slightly larger */
-            letter-spacing: 2.5px; /* Wider letter spacing */
-            margin-top: 12px;
-            font-weight: 700;
-            text-shadow: 0 3px 8px rgba(0, 0, 0, 0.5); /* Stronger text shadow */
+        .card-image .card-logo {
+            font-size: 28px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
         }
 
-        .card-image .card-subtext {
-            margin-top: 10px;
+        .card-image .card-number {
+            font-family: 'Space Mono', monospace; /* Monospace font for card number */
+            font-size: 20px; /* Smaller font for number */
+            letter-spacing: 2px; /* Wider spacing */
+            margin-top: auto; /* Push to bottom */
+            margin-bottom: 10px;
+        }
+
+        .card-image .card-holder-info {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            font-size: 12px; /* Very small for details */
             font-weight: 500;
+            opacity: 0.8;
+        }
+
+        .card-image .card-holder-name {
+            text-transform: uppercase;
         }
 
         .card-image .visa {
             position: absolute;
-            top: 30px;
-            right: 30px;
-            font-size: 40px; /* Larger icon */
-            text-shadow: 0 3px 10px rgba(0, 0, 0, 0.6); /* Stronger text shadow */
+            bottom: 20px;
+            right: 20px;
+            font-size: 36px; /* Slightly smaller icon */
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
         }
 
         /* Card action buttons (Lock Card, Copy Number) */
         .card-actions {
             display: flex;
             justify-content: space-between;
-            margin-top: 24px;
-            gap: 16px;
+            margin-top: 20px; /* Reduced margin */
+            gap: 12px; /* Reduced gap */
         }
 
         .card-actions button {
             background: #282828;
             color: #FFF;
             border: none;
-            padding: 16px;
-            border-radius: 18px;
-            width: 48%;
+            padding: 14px; /* Reduced padding */
+            border-radius: 16px; /* Slightly smaller border radius */
+            width: 49%;
             cursor: pointer;
-            font-size: 17px; /* Slightly smaller font */
+            font-size: 15px; /* Smaller font */
             font-weight: 700;
             transition: background 0.3s ease, transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
-            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
             text-transform: uppercase;
             letter-spacing: 0.5px;
             border: 1px solid rgba(255, 255, 255, 0.05);
@@ -401,25 +423,25 @@
 
         .card-actions button:hover {
             background: #353535;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 7px 22px rgba(0, 0, 0, 0.7);
         }
 
         .card-actions button:active {
-            transform: scale(0.93);
+            transform: scale(0.95);
             background: #404040;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
         }
 
         /* Search bar styles */
         .search-bar {
             width: 100%;
-            padding: 16px 20px;
+            padding: 14px 18px; /* Reduced padding */
             background: #282828; /* Darker background */
             border: none;
-            border-radius: 18px;
-            margin-bottom: 20px;
+            border-radius: 16px; /* Slightly smaller border radius */
+            margin-bottom: 18px; /* Reduced margin */
             color: #FFF;
-            font-size: 17px;
+            font-size: 16px; /* Smaller font */
             outline: none;
             transition: background 0.3s ease, box-shadow 0.3s ease;
             box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.5); /* Deeper inset shadow */
@@ -438,7 +460,7 @@
         /* Navigation bar styles */
         .nav-bar {
             background: #121212;
-            padding: 12px 0;
+            padding: 10px 0; /* Reduced padding */
             display: flex;
             justify-content: space-around;
             border-top: 1px solid #252525;
@@ -449,7 +471,7 @@
             max-width: 400px;
             margin: 0 auto;
             z-index: 60;
-            box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.8);
+            box-shadow: 0 -6px 18px rgba(0, 0, 0, 0.8);
         }
 
         .nav-item {
@@ -460,29 +482,29 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 6px;
+            padding: 5px; /* Reduced padding */
             transition: color 0.3s ease, transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .nav-item .nav-icon {
-            font-size: 30px; /* Slightly larger */
-            margin-bottom: 4px;
+            font-size: 28px; /* Slightly smaller */
+            margin-bottom: 3px; /* Tighter spacing */
             transition: color 0.3s ease, transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .nav-item.active .nav-icon {
             color: #00C853; /* Brighter Cash App green */
-            transform: scale(1.25); /* More pronounced active state */
-            text-shadow: 0 0 12px rgba(0, 200, 83, 0.6); /* Stronger glow */
+            transform: scale(1.2); /* Slightly less pronounced active state */
+            text-shadow: 0 0 10px rgba(0, 200, 83, 0.6); /* Stronger glow */
         }
 
         .nav-item:hover .nav-icon {
             color: #A0A0A0; /* Lighter on hover */
-            transform: scale(1.1);
+            transform: scale(1.08);
         }
 
         .nav-item:active {
-            transform: scale(0.88); /* Deeper press */
+            transform: scale(0.9); /* Deeper press */
         }
 
         /* Popup styles */
@@ -510,7 +532,7 @@
         .popup-header {
             display: flex;
             justify-content: space-between;
-            padding: 24px;
+            padding: 20px; /* Reduced padding */
             border-bottom: 1px solid #252525;
             background: #121212;
             position: sticky;
@@ -523,7 +545,7 @@
             background: none;
             border: none;
             color: #FFF;
-            font-size: 30px; /* Larger close button */
+            font-size: 28px; /* Slightly smaller close button */
             cursor: pointer;
             transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), color 0.3s ease;
         }
@@ -534,35 +556,35 @@
         }
 
         .close-btn:active {
-            transform: scale(0.9) rotate(90deg);
+            transform: scale(0.92) rotate(90deg);
         }
 
         .popup-content {
-            padding: 24px;
+            padding: 20px; /* Reduced padding */
             max-height: 80vh; /* Allow more height for scrollable content */
             overflow-y: auto;
             background: linear-gradient(135deg, #1A1A1A, #222222);
-            border-radius: 20px;
-            margin: 24px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8); /* Stronger shadow for popup content */
+            border-radius: 18px; /* Slightly smaller border radius */
+            margin: 20px; /* Reduced margin */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.8); /* Stronger shadow for popup content */
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .popup-content h2 {
-            font-size: 26px; /* Larger heading */
+            font-size: 22px; /* Smaller heading */
             font-weight: 800;
             color: #FFF;
-            margin-bottom: 20px;
+            margin-bottom: 18px; /* Reduced margin */
             text-transform: uppercase;
-            letter-spacing: 1px;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            letter-spacing: 0.8px;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
         }
 
         .popup-content p {
-            font-size: 17px;
+            font-size: 16px; /* Slightly smaller */
             color: #E6E6E6;
-            margin: 16px 0;
-            line-height: 1.7;
+            margin: 14px 0; /* Reduced margin */
+            line-height: 1.6;
         }
 
         .popup-content p span {
@@ -572,74 +594,74 @@
 
         /* Amount display for keypad */
         #amount-display {
-            font-size: 85px; /* Larger font size */
+            font-size: 75px; /* Smaller font size for mobile */
             text-align: center;
             color: #FFF;
-            margin: 48px 0;
+            margin: 40px 0; /* Reduced margin */
             font-weight: 800;
             transition: color 0.3s ease, text-shadow 0.3s ease;
-            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            text-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
         }
 
         #amount-display.active {
             color: #00C853;
-            text-shadow: 0 0 20px rgba(0, 200, 83, 0.8); /* Stronger glow */
+            text-shadow: 0 0 18px rgba(0, 200, 83, 0.8); /* Stronger glow */
         }
 
         /* Numeric keypad styles */
         .numeric-pad {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 18px;
-            margin: 24px;
-            padding-bottom: 36px;
+            gap: 16px; /* Reduced gap */
+            margin: 20px; /* Reduced margin */
+            padding-bottom: 30px; /* Reduced padding */
         }
 
         .numeric-pad button {
             background: #282828;
             border: none;
-            padding: 24px;
-            border-radius: 18px;
+            padding: 20px; /* Reduced padding */
+            border-radius: 16px; /* Slightly smaller border radius */
             cursor: pointer;
-            font-size: 36px; /* Larger font */
+            font-size: 32px; /* Smaller font */
             color: #FFF;
             transition: background 0.3s ease, transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
-            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
             font-weight: 700;
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .numeric-pad button:hover {
             background: #353535;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 7px 22px rgba(0, 0, 0, 0.7);
         }
 
         .numeric-pad button:active {
-            transform: scale(0.93);
+            transform: scale(0.94);
             background: #404040;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
         }
 
         /* Transaction buttons (Request, Pay) */
         .transaction-buttons {
             display: flex;
             justify-content: space-between;
-            margin: 0 24px 60px;
-            gap: 18px;
+            margin: 0 20px 50px; /* Reduced margins */
+            gap: 16px; /* Reduced gap */
         }
 
         .transaction-buttons button {
             background: #282828;
             color: #FFF;
             border: none;
-            padding: 18px;
-            border-radius: 18px;
-            width: 48%;
+            padding: 16px; /* Reduced padding */
+            border-radius: 16px; /* Slightly smaller border radius */
+            width: 49%;
             cursor: pointer;
-            font-size: 20px;
+            font-size: 18px; /* Smaller font */
             font-weight: 800;
             transition: background 0.3s ease, transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
-            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
             text-transform: uppercase;
             letter-spacing: 0.5px;
             border: 1px solid rgba(255, 255, 255, 0.05);
@@ -647,13 +669,13 @@
 
         .transaction-buttons button:hover {
             background: #353535;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 7px 22px rgba(0, 0, 0, 0.7);
         }
 
         .transaction-buttons button:active {
-            transform: scale(0.94);
+            transform: scale(0.95);
             background: #404040;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
         }
 
         .transaction-buttons button:disabled {
@@ -668,41 +690,41 @@
         .recipient-list {
             display: flex;
             flex-direction: column;
-            gap: 18px;
-            padding: 24px;
+            gap: 16px; /* Reduced gap */
+            padding: 20px; /* Reduced padding */
         }
 
         .recipient-item {
             display: flex;
             align-items: center;
-            padding: 16px;
+            padding: 14px; /* Reduced padding */
             background: linear-gradient(135deg, #1A1A1A, #222222);
-            border-radius: 18px;
+            border-radius: 16px; /* Slightly smaller border radius */
             cursor: pointer;
             transition: background 0.3s ease, transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .recipient-item .contact-item {
-            margin-right: 16px;
+            margin-right: 14px; /* Reduced margin */
             box-shadow: none;
         }
 
         .recipient-item span {
-            font-size: 18px;
+            font-size: 17px; /* Slightly smaller */
             color: #E6E6E6;
             font-weight: 500;
         }
 
         .recipient-item:hover {
             background: rgba(40, 40, 40, 0.5);
-            transform: translateX(6px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+            transform: translateX(5px);
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.6);
         }
 
         .recipient-item:active {
-            transform: scale(0.97);
+            transform: scale(0.98);
             background: rgba(50, 50, 50, 0.6);
         }
 
@@ -721,7 +743,7 @@
 
         .recipient-item.add-new:hover {
             background: #00B04A;
-            box-shadow: 0 8px 25px rgba(0, 200, 83, 0.7);
+            box-shadow: 0 7px 25px rgba(0, 200, 83, 0.7);
         }
 
         .recipient-item.add-new:active {
@@ -737,13 +759,13 @@
             left: 50%;
             transform: translate(-50%, -50%);
             background: linear-gradient(135deg, #1A1A1A, #222222);
-            padding: 28px; /* More padding */
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.9); /* Stronger shadow */
+            padding: 25px; /* Reduced padding */
+            border-radius: 18px; /* Slightly smaller border radius */
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.9); /* Stronger shadow */
             z-index: 100;
             text-align: center;
             color: #FFF;
-            font-size: 19px; /* Larger font */
+            font-size: 17px; /* Smaller font */
             font-weight: 500;
             animation: fadeInScale 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* New animation */
             border: 1px solid rgba(255, 255, 255, 0.15);
@@ -753,23 +775,23 @@
             background: #00C853;
             color: #000;
             border: none;
-            padding: 12px 25px; /* More padding */
-            border-radius: 15px; /* Slightly more rounded */
-            margin-top: 25px; /* More margin */
+            padding: 10px 20px; /* Reduced padding */
+            border-radius: 12px; /* Slightly less rounded */
+            margin-top: 20px; /* Reduced margin */
             cursor: pointer;
-            font-size: 17px; /* Slightly larger */
+            font-size: 15px; /* Smaller font */
             font-weight: 700;
             transition: background 0.3s ease, transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            box-shadow: 0 4px 15px rgba(0, 200, 83, 0.4);
+            box-shadow: 0 3px 12px rgba(0, 200, 83, 0.4);
         }
 
         .message-box button:hover {
             background: #00B04A;
-            box-shadow: 0 6px 20px rgba(0, 200, 83, 0.6);
+            box-shadow: 0 5px 18px rgba(0, 200, 83, 0.6);
         }
 
         .message-box button:active {
-            transform: scale(0.95);
+            transform: scale(0.96);
         }
 
         /* Loading spinner */
@@ -785,9 +807,9 @@
         .loading-spinner::after {
             content: "";
             display: block;
-            width: 50px; /* Larger spinner */
-            height: 50px;
-            border: 7px solid #00C853; /* Thicker, brighter green */
+            width: 40px; /* Smaller spinner */
+            height: 40px;
+            border: 6px solid #00C853; /* Thicker, brighter green */
             border-top-color: transparent;
             border-radius: 50%;
             animation: spin 0.7s linear infinite; /* Faster spin */
@@ -795,12 +817,12 @@
 
         /* Animations */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(15px); } /* Smaller translateY */
             to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes fadeInScale {
-            from { opacity: 0; transform: translate(-50%, -40%) scale(0.9); }
+            from { opacity: 0; transform: translate(-50%, -45%) scale(0.85); } /* Smaller scale start */
             to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
         }
 
@@ -823,9 +845,9 @@
         }
 
         .investment-card .card-amount .icon {
-            font-size: 32px; /* Slightly larger */
-            width: 45px; /* Slightly larger */
-            height: 45px;
+            font-size: 28px; /* Slightly smaller */
+            width: 40px; /* Slightly smaller */
+            height: 40px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -833,7 +855,7 @@
             color: #000;
             font-weight: bold;
             background: #00C853; /* Brighter green */
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
         }
         .investment-card .card-amount .icon.bitcoin { background: #FBC02D; } /* Brighter Bitcoin orange */
         .investment-card .card-amount .icon.stocks { background: #673AB7; } /* Deeper purple for stocks */
@@ -856,7 +878,7 @@
             animation: slideUp 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             backdrop-filter: blur(18px); /* Even stronger blur */
             border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 24px;
+            padding: 20px; /* Reduced padding */
         }
 
         .detail-screen.active {
@@ -867,9 +889,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 24px;
+            margin-bottom: 20px; /* Reduced margin */
             background: #121212; /* Match popup header */
-            padding: 24px 0; /* Padding for header within detail screen */
+            padding: 20px 0; /* Padding for header within detail screen */
             position: sticky;
             top: 0;
             z-index: 81;
@@ -877,66 +899,66 @@
         }
 
         .detail-screen-header h2 {
-            font-size: 28px; /* Larger heading */
+            font-size: 24px; /* Smaller heading */
             font-weight: 800;
             color: #FFF;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 0.8px;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         }
 
         .detail-content {
             background: linear-gradient(135deg, #1A1A1A, #222222);
-            padding: 24px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            padding: 20px; /* Reduced padding */
+            border-radius: 18px; /* Slightly smaller border radius */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.8);
             color: #E6E6E6;
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .detail-content h3 {
-            font-size: 22px;
-            margin-bottom: 15px;
+            font-size: 20px; /* Smaller heading */
+            margin-bottom: 12px; /* Reduced margin */
             color: #FFF;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
         }
 
         .detail-content p {
-            margin-bottom: 10px;
+            margin-bottom: 8px; /* Reduced margin */
         }
 
         .detail-content .chart-placeholder {
             width: 100%;
-            height: 150px;
+            height: 120px; /* Shorter height */
             background: #282828;
             border-radius: 10px;
-            margin: 20px 0;
+            margin: 18px 0; /* Reduced margin */
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
+            font-size: 16px; /* Smaller font */
             color: #A0A0A0;
             border: 1px dashed #404040; /* Dashed border for placeholder */
         }
 
         .detail-content .action-buttons {
-            margin-top: 20px;
+            margin-top: 18px; /* Reduced margin */
         }
 
         .detail-content .toggle-switch {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-top: 20px;
+            margin-top: 18px; /* Reduced margin */
             background: #1A1A1A;
-            padding: 15px;
-            border-radius: 15px;
+            padding: 12px; /* Reduced padding */
+            border-radius: 12px; /* Slightly smaller border radius */
             box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .detail-content .toggle-switch label {
-            font-size: 18px;
+            font-size: 16px; /* Smaller font */
             font-weight: 500;
             color: #E6E6E6;
         }
@@ -944,141 +966,110 @@
         .detail-content .switch {
             position: relative;
             display: inline-block;
-            width: 60px;
-            height: 34px;
-        }
-
-        .detail-content .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
+            width: 50px; /* Smaller switch */
+            height: 28px; /* Smaller switch */
         }
 
         .detail-content .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #555; /* Darker grey for off state */
-            -webkit-transition: .4s;
-            transition: .4s;
-            border-radius: 34px;
-            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.4);
+            border-radius: 28px; /* Match switch height */
         }
 
         .detail-content .slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            -webkit-transition: .4s;
-            transition: .4s;
-            border-radius: 50%;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-        }
-
-        .detail-content input:checked + .slider {
-            background-color: #00C853;
-            box-shadow: inset 0 2px 5px rgba(0, 200, 83, 0.4);
-        }
-
-        .detail-content input:focus + .slider {
-            box-shadow: 0 0 1px #00C853;
+            height: 22px; /* Smaller slider circle */
+            width: 22px; /* Smaller slider circle */
+            left: 3px; /* Adjusted position */
+            bottom: 3px; /* Adjusted position */
         }
 
         .detail-content input:checked + .slider:before {
-            -webkit-transform: translateX(26px);
-            -ms-transform: translateX(26px);
-            transform: translateX(26px);
+            -webkit-transform: translateX(22px); /* Adjusted translation */
+            -ms-transform: translateX(22px);
+            transform: translateX(22px);
         }
 
-        /* Rounded sliders */
-        .detail-content .slider.round {
-            border-radius: 34px;
-        }
-
-        .detail-content .slider.round:before {
-            border-radius: 50%;
-        }
-
-        /* Responsive adjustments for smaller screens */
-        @media (max-width: 375px) {
+        /* Responsive adjustments for very small screens */
+        @media (max-width: 320px) {
             .header {
-                padding: 18px;
+                padding: 15px;
             }
             .header h1 {
-                font-size: 22px;
+                font-size: 20px;
             }
             .profile-icon {
-                width: 40px;
-                height: 40px;
-                font-size: 16px;
+                width: 36px;
+                height: 36px;
+                font-size: 15px;
             }
             .section {
-                padding: 18px;
+                padding: 15px;
             }
             .card {
-                padding: 18px;
-                margin-bottom: 18px;
+                padding: 15px;
+                margin-bottom: 15px;
             }
             .card-amount {
-                font-size: 36px;
+                font-size: 34px;
             }
             .action-buttons button {
-                font-size: 16px;
-                padding: 14px;
+                font-size: 14px;
+                padding: 12px;
             }
             .contact-item {
-                width: 44px;
-                height: 44px;
+                width: 40px;
+                height: 40px;
                 font-size: 18px;
             }
             .search-bar {
-                padding: 14px 18px;
-                font-size: 16px;
+                padding: 12px 15px;
+                font-size: 15px;
             }
             .nav-item .nav-icon {
-                font-size: 26px;
+                font-size: 24px;
             }
             #amount-display {
-                font-size: 70px;
+                font-size: 65px;
                 margin: 30px 0;
             }
             .numeric-pad button {
-                font-size: 30px;
-                padding: 20px;
+                font-size: 28px;
+                padding: 18px;
             }
             .transaction-buttons button {
-                font-size: 18px;
-                padding: 16px;
+                font-size: 16px;
+                padding: 14px;
             }
             .popup-content {
-                padding: 18px;
-                margin: 18px;
+                padding: 15px;
+                margin: 15px;
             }
             .popup-content h2 {
-                font-size: 22px;
+                font-size: 20px;
             }
             .popup-content p {
-                font-size: 16px;
-            }
-            .message-box {
-                padding: 20px;
-                font-size: 16px;
-            }
-            .message-box button {
-                padding: 10px 20px;
                 font-size: 15px;
             }
+            .message-box {
+                padding: 18px;
+                font-size: 15px;
+            }
+            .message-box button {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
             .loading-spinner::after {
-                width: 40px;
-                height: 40px;
-                border-width: 5px;
+                width: 35px;
+                height: 35px;
+                border-width: 4px;
+            }
+            .card-image .card-number {
+                font-size: 18px;
+                letter-spacing: 1.5px;
+            }
+            .card-image .card-holder-info {
+                font-size: 11px;
+            }
+            .card-image .visa {
+                font-size: 32px;
             }
         }
     </style>
@@ -1217,8 +1208,13 @@
 
         <div class="section" id="cardSection">
             <div class="card-image">
-                <div class="card-details">**** **** **** 7099</div>
-                <div class="card-subtext">CVV 016 EXP 01/29</div>
+                <div class="card-logo">CASH</div>
+                <div class="card-number">**** **** **** 7099</div>
+                <div class="card-holder-info">
+                    <span class="card-holder-name">J. DOE</span>
+                    <span>EXP 01/29</span>
+                    <span>CVV 016</span>
+                </div>
                 <span class="visa"><i class="fa-brands fa-cc-visa"></i></span>
             </div>
             <div class="card-actions">
