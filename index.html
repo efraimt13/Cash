@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,23 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Cash App Clone - Send, spend, save, and invest">
     <title>Cash App</title>
+    <script src="help.js" ></script>
     <script src="https://kit.fontawesome.com/66e3b24af0.js" crossorigin="anonymous"></script>
     <style>
+        /* Base styles and resets */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
-            background: linear-gradient(135deg, #0F0F0F, #1A1A1A);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #0A0A0A, #121212); /* Deeper, more subtle dark gradient */
             color: #E6E6E6;
-            line-height: 1.7;
-            overflow-x: hidden;
+            line-height: 1.6; /* Slightly tighter line height for mobile readability */
+            overflow-x: hidden; /* Prevent horizontal scrolling */
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            touch-action: manipulation;
+            touch-action: manipulation; /* Improves touch responsiveness */
         }
+
+        /* Main app container */
         .app-container {
             max-width: 400px;
             margin: 0 auto;
@@ -30,60 +36,76 @@
             display: flex;
             flex-direction: column;
             position: relative;
-            padding-bottom: 68px;
-            overflow: hidden;
+            padding-bottom: 68px; /* Space for fixed navigation bar */
+            overflow: hidden; /* Ensure content doesn't overflow */
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.9); /* Overall app container shadow */
         }
+
+        /* Header styles */
         .header {
-            background: #1A1A1A;
+            background: #121212; /* Slightly darker header */
             padding: 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #2D2D2D;
+            border-bottom: 1px solid #252525; /* Finer border */
             position: sticky;
             top: 0;
             z-index: 60;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.8);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8); /* More pronounced shadow */
         }
+
         .header h1 {
             font-size: 26px;
             font-weight: 800;
             color: #FFF;
             text-transform: uppercase;
             letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Subtle text shadow */
         }
+
+        /* Profile icon in header */
         .profile-icon {
-            width: 42px;
-            height: 42px;
-            background: linear-gradient(135deg, #FF407A, #FF8CA1);
+            width: 44px; /* Slightly larger */
+            height: 44px;
+            background: linear-gradient(135deg, #FF407A, #FF8CA1); /* Cash App pink/red gradient */
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #FFF;
-            font-size: 18px;
+            font-size: 19px; /* Slightly larger font */
             font-weight: 700;
             cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 0 12px rgba(255, 64, 122, 0.6);
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease; /* Smoother transition */
+            box-shadow: 0 0 16px rgba(255, 64, 122, 0.7); /* More prominent glow */
+            border: 2px solid rgba(255, 255, 255, 0.1); /* Subtle border */
         }
+
         .profile-icon:hover {
-            transform: scale(1.15);
-            box-shadow: 0 0 20px rgba(255, 64, 122, 0.8);
+            transform: scale(1.18); /* More pronounced hover */
+            box-shadow: 0 0 25px rgba(255, 64, 122, 0.9);
         }
+
         .profile-icon:active {
-            transform: scale(0.9);
+            transform: scale(0.92); /* Deeper press effect */
+            box-shadow: 0 0 8px rgba(255, 64, 122, 0.5);
         }
+
+        /* Section styles (for different app screens) */
         .section {
             padding: 24px;
             display: none;
-            animation: fadeIn 0.4s ease-out;
+            animation: fadeIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smoother fade-in */
         }
+
         .section.active {
             display: block;
         }
+
+        /* Card styles */
         .card {
-            background: linear-gradient(135deg, #1F1F1F, #2B2B2B);
+            background: linear-gradient(135deg, #1A1A1A, #222222); /* Darker, more consistent gradient */
             padding: 22px;
             margin-bottom: 22px;
             border-radius: 20px;
@@ -91,42 +113,52 @@
             justify-content: space-between;
             align-items: center;
             cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(6px);
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7); /* Stronger, softer shadow */
+            backdrop-filter: blur(8px); /* Slightly stronger blur effect */
+            border: 1px solid rgba(255, 255, 255, 0.08); /* Subtle light border */
         }
+
         .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 26px rgba(0, 0, 0, 0.7);
+            transform: translateY(-6px); /* More lift */
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.8); /* More pronounced shadow on hover */
         }
+
         .card:active {
-            transform: scale(0.96);
+            transform: scale(0.95); /* Deeper press */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
+
         .card-title {
             font-size: 16px;
-            color: #A9A9A9;
-            margin-bottom: 10px;
+            color: #A0A0A0; /* Slightly darker gray */
+            margin-bottom: 8px; /* Tighter spacing */
             font-weight: 500;
         }
+
         .card-amount {
-            font-size: 40px;
+            font-size: 42px; /* Slightly larger */
             font-weight: 800;
             color: #FFF;
-            letter-spacing: -0.5px;
+            letter-spacing: -0.8px; /* Tighter letter spacing */
         }
+
         .card-subtext {
-            font-size: 15px;
-            color: #757575;
+            font-size: 14px; /* Slightly smaller */
+            color: #606060; /* Darker subtext */
             font-weight: 400;
         }
+
+        /* Action buttons (e.g., Add Money, Withdraw) */
         .action-buttons {
             display: flex;
             justify-content: space-between;
             margin-top: 24px;
             gap: 16px;
         }
+
         .action-buttons button {
-            background: #2D2D2D;
+            background: #282828; /* Darker button background */
             color: #FFF;
             border: none;
             padding: 16px;
@@ -135,78 +167,109 @@
             cursor: pointer;
             font-size: 18px;
             font-weight: 700;
-            transition: background 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+            transition: background 0.3s ease, transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.6); /* Softer shadow */
             text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
+
         .action-buttons button:hover {
-            background: #383838;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+            background: #353535; /* Lighter on hover */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
         }
+
         .action-buttons button:active {
-            transform: scale(0.94);
+            transform: scale(0.93); /* More pronounced press */
             background: #404040;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
         }
+
+        /* Contact list for Discover/Activity sections */
         .contact-list {
             display: flex;
             overflow-x: auto;
             padding: 12px 0;
             gap: 16px;
-            -webkit-overflow-scrolling: touch;
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+            scrollbar-width: none; /* Hide scrollbar for Firefox */
+            -ms-overflow-style: none;  /* Hide scrollbar for IE and Edge */
         }
+
+        .contact-list::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for Chrome, Safari, Opera */
+        }
+
         .contact-item {
-            width: 46px;
-            height: 46px;
+            width: 48px; /* Slightly larger */
+            height: 48px;
             border-radius: 50%;
-            background: #00D54B;
+            background: #00C853; /* Brighter Cash App green */
             display: flex;
             align-items: center;
             justify-content: center;
             color: #000;
-            font-size: 20px;
+            font-size: 22px; /* Larger font */
             font-weight: 700;
-            flex-shrink: 0;
+            flex-shrink: 0; /* Prevent shrinking */
             cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .contact-item.lyft { background: #EA0B8C; }
-        .contact-item.starbucks { background: #00704A; }
-        .contact-item.seven-eleven { background: #F58220; }
-        .contact-item.doordash { background: #D93A2A; }
+
+        /* Specific contact item colors */
+        .contact-item.lyft { background: #E91E63; } /* Deeper pink */
+        .contact-item.starbucks { background: #00897B; } /* Teal */
+        .contact-item.seven-eleven { background: #FFC107; } /* Amber */
+        .contact-item.doordash { background: #D32F2F; } /* Darker red */
+        .contact-item.uber-icon { background: #FFFFFF; color: #000; } /* Uber icon */
+        .contact-item.apple-icon { background: #D32F2F; color: #FFF; } /* Apple red */
+
         .contact-item:hover {
-            transform: scale(1.15);
-            box-shadow: 0 0 18px rgba(0, 0, 0, 0.4);
+            transform: scale(1.18);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
         }
+
         .contact-item:active {
-            transform: scale(0.93);
+            transform: scale(0.92);
         }
+
+        /* Offer list item styles */
         .offer {
             display: flex;
             align-items: center;
             padding: 20px 0;
-            border-bottom: 1px solid #2D2D2D;
-            transition: background 0.3s ease, transform 0.2s ease;
+            border-bottom: 1px solid #252525;
+            transition: background 0.3s ease, transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
         }
+
         .offer .contact-item {
             margin-right: 20px;
+            box-shadow: none; /* No shadow on offer contact items */
         }
+
         .offer span {
             font-size: 17px;
             color: #E6E6E6;
             flex-grow: 1;
             font-weight: 500;
         }
+
         .offer:hover {
-            background: #252525;
-            transform: translateX(6px);
+            background: rgba(40, 40, 40, 0.5); /* Subtle highlight */
+            transform: translateX(8px); /* More pronounced slide */
         }
+
         .offer:active {
-            transform: scale(0.97);
-            background: #2C2C2C;
+            transform: scale(0.98);
+            background: rgba(50, 50, 50, 0.6);
         }
+
+        /* Show more button */
         .show-more {
-            background: #2D2D2D;
+            background: #282828;
             color: #FFF;
             border: none;
             padding: 16px;
@@ -216,108 +279,141 @@
             cursor: pointer;
             font-size: 18px;
             font-weight: 700;
-            transition: background 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+            transition: background 0.3s ease, transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.6);
             text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
+
         .show-more:hover {
-            background: #383838;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+            background: #353535;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
         }
+
         .show-more:active {
             transform: scale(0.95);
             background: #404040;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
         }
+
+        /* Activity item styles */
         .activity-item {
             display: flex;
+            align-items: center; /* Align items vertically */
             justify-content: space-between;
             padding: 20px 0;
-            border-bottom: 1px solid #2D2D2D;
-            transition: background 0.3s ease, transform 0.2s ease;
+            border-bottom: 1px solid #252525;
+            transition: background 0.3s ease, transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
         }
+
         .activity-item .contact-item {
             margin-right: 20px;
+            flex-shrink: 0; /* Prevent shrinking */
+            box-shadow: none; /* No shadow on activity contact items */
         }
+
         .activity-item div {
             flex-grow: 1;
         }
+
         .activity-item .card-subtext {
-            margin-top: 8px;
+            margin-top: 6px; /* Tighter spacing */
         }
+
         .activity-item:hover {
-            background: #252525;
-            transform: translateX(6px);
+            background: rgba(40, 40, 40, 0.5);
+            transform: translateX(8px);
         }
+
         .activity-item:active {
-            transform: scale(0.97);
-            background: #2C2C2C;
+            transform: scale(0.98);
+            background: rgba(50, 50, 50, 0.6);
         }
+
+        /* Card image for physical card display */
         .card-image {
-            background: linear-gradient(135deg, #FF407A, #9B59B6);
+            background: linear-gradient(135deg, #FF407A, #9B59B6); /* Cash App card gradient */
             padding: 30px;
             border-radius: 20px;
             color: #FFF;
             text-align: center;
             margin: 24px 0;
             position: relative;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            backdrop-filter: blur(8px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9); /* Stronger, more diffused shadow */
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;
+            backdrop-filter: blur(10px); /* Stronger blur */
+            border: 1px solid rgba(255, 255, 255, 0.15); /* More visible border */
         }
+
         .card-image:hover {
-            transform: scale(1.04);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+            transform: scale(1.05); /* More pronounced scale */
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.95);
         }
+
         .card-image .card-details {
-            font-size: 22px;
-            letter-spacing: 2px;
+            font-size: 24px; /* Slightly larger */
+            letter-spacing: 2.5px; /* Wider letter spacing */
             margin-top: 12px;
             font-weight: 700;
-            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+            text-shadow: 0 3px 8px rgba(0, 0, 0, 0.5); /* Stronger text shadow */
         }
+
         .card-image .card-subtext {
             margin-top: 10px;
             font-weight: 500;
         }
+
         .card-image .visa {
             position: absolute;
             top: 30px;
             right: 30px;
-            font-size: 38px;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+            font-size: 40px; /* Larger icon */
+            text-shadow: 0 3px 10px rgba(0, 0, 0, 0.6); /* Stronger text shadow */
         }
+
+        /* Card action buttons (Lock Card, Copy Number) */
         .card-actions {
             display: flex;
             justify-content: space-between;
             margin-top: 24px;
             gap: 16px;
         }
+
         .card-actions button {
-            background: #2D2D2D;
+            background: #282828;
             color: #FFF;
             border: none;
             padding: 16px;
             border-radius: 18px;
             width: 48%;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 17px; /* Slightly smaller font */
             font-weight: 700;
-            transition: background 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+            transition: background 0.3s ease, transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.6);
             text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
+
         .card-actions button:hover {
-            background: #383838;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+            background: #353535;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
         }
+
         .card-actions button:active {
-            transform: scale(0.94);
+            transform: scale(0.93);
             background: #404040;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
         }
+
+        /* Search bar styles */
         .search-bar {
             width: 100%;
             padding: 16px 20px;
-            background: #2D2D2D;
+            background: #282828; /* Darker background */
             border: none;
             border-radius: 18px;
             margin-bottom: 20px;
@@ -325,18 +421,26 @@
             font-size: 17px;
             outline: none;
             transition: background 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.4);
+            box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.5); /* Deeper inset shadow */
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
+
+        .search-bar::placeholder {
+            color: #808080; /* Lighter placeholder text */
+        }
+
         .search-bar:focus {
-            background: #383838;
-            box-shadow: 0 0 15px rgba(0, 213, 75, 0.5);
+            background: #353535;
+            box-shadow: 0 0 18px rgba(0, 200, 83, 0.6), inset 0 3px 8px rgba(0, 0, 0, 0.6); /* Green glow on focus */
         }
+
+        /* Navigation bar styles */
         .nav-bar {
-            background: #1A1A1A;
+            background: #121212;
             padding: 12px 0;
             display: flex;
             justify-content: space-around;
-            border-top: 1px solid #2D2D2D;
+            border-top: 1px solid #252525;
             position: fixed;
             bottom: 0;
             left: 0;
@@ -344,39 +448,46 @@
             max-width: 400px;
             margin: 0 auto;
             z-index: 60;
-            box-shadow: 0 -6px 18px rgba(0, 0, 0, 0.8);
+            box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.8);
         }
+
         .nav-item {
             background: none;
             border: none;
-            color: #757575;
+            color: #606060; /* Darker inactive icon color */
             cursor: pointer;
             display: flex;
             flex-direction: column;
             align-items: center;
             padding: 6px;
-            transition: color 0.3s ease, transform 0.2s ease;
+            transition: color 0.3s ease, transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
+
         .nav-item .nav-icon {
-            font-size: 28px;
+            font-size: 30px; /* Slightly larger */
             margin-bottom: 4px;
-            transition: color 0.3s ease, transform 0.3s ease;
+            transition: color 0.3s ease, transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
+
         .nav-item.active .nav-icon {
-            color: #00D54B;
-            transform: scale(1.2);
-            text-shadow: 0 0 10px rgba(0, 213, 75, 0.4);
+            color: #00C853; /* Brighter Cash App green */
+            transform: scale(1.25); /* More pronounced active state */
+            text-shadow: 0 0 12px rgba(0, 200, 83, 0.6); /* Stronger glow */
         }
+
         .nav-item:hover .nav-icon {
-            color: #A9A9A9;
+            color: #A0A0A0; /* Lighter on hover */
             transform: scale(1.1);
         }
+
         .nav-item:active {
-            transform: scale(0.9);
+            transform: scale(0.88); /* Deeper press */
         }
+
+        /* Popup styles */
         .popup {
             display: none;
-            background: rgba(17, 17, 17, 0.95);
+            background: rgba(0, 0, 0, 0.9); /* More opaque background */
             position: fixed;
             top: 0;
             left: 0;
@@ -386,77 +497,95 @@
             height: 100%;
             z-index: 70;
             overflow-y: auto;
-            animation: slideUp 0.5s ease-out;
-            backdrop-filter: blur(12px);
+            animation: slideUp 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smoother slide-up */
+            backdrop-filter: blur(15px); /* Stronger blur for popups */
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
+
         .popup.active {
             display: block;
         }
+
         .popup-header {
             display: flex;
             justify-content: space-between;
             padding: 24px;
-            border-bottom: 1px solid #2D2D2D;
-            background: #1A1A1A;
+            border-bottom: 1px solid #252525;
+            background: #121212;
             position: sticky;
             top: 0;
             z-index: 71;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); /* Subtle shadow for popup header */
         }
+
         .close-btn {
             background: none;
             border: none;
             color: #FFF;
-            font-size: 28px;
+            font-size: 30px; /* Larger close button */
             cursor: pointer;
-            transition: transform 0.3s ease, color 0.3s ease;
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), color 0.3s ease;
         }
+
         .close-btn:hover {
-            color: #00D54B;
+            color: #00C853;
             transform: rotate(90deg);
         }
+
         .close-btn:active {
             transform: scale(0.9) rotate(90deg);
         }
+
         .popup-content {
             padding: 24px;
-            max-height: 70vh;
+            max-height: 80vh; /* Allow more height for scrollable content */
             overflow-y: auto;
-            background: linear-gradient(135deg, #1F1F1F, #2B2B2B);
+            background: linear-gradient(135deg, #1A1A1A, #222222);
             border-radius: 20px;
             margin: 24px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8); /* Stronger shadow for popup content */
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
+
         .popup-content h2 {
-            font-size: 24px;
+            font-size: 26px; /* Larger heading */
             font-weight: 800;
             color: #FFF;
             margin-bottom: 20px;
             text-transform: uppercase;
             letter-spacing: 1px;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
         }
+
         .popup-content p {
             font-size: 17px;
             color: #E6E6E6;
             margin: 16px 0;
             line-height: 1.7;
         }
+
         .popup-content p span {
-            color: #00D54B;
+            color: #00C853; /* Brighter green for highlights */
             font-weight: 600;
         }
+
+        /* Amount display for keypad */
         #amount-display {
-            font-size: 80px;
+            font-size: 85px; /* Larger font size */
             text-align: center;
             color: #FFF;
             margin: 48px 0;
             font-weight: 800;
             transition: color 0.3s ease, text-shadow 0.3s ease;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
         }
+
         #amount-display.active {
-            color: #00D54B;
-            text-shadow: 0 0 15px rgba(0, 213, 75, 0.6);
+            color: #00C853;
+            text-shadow: 0 0 20px rgba(0, 200, 83, 0.8); /* Stronger glow */
         }
+
+        /* Numeric keypad styles */
         .numeric-pad {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -464,34 +593,42 @@
             margin: 24px;
             padding-bottom: 36px;
         }
+
         .numeric-pad button {
-            background: #2D2D2D;
+            background: #282828;
             border: none;
             padding: 24px;
             border-radius: 18px;
             cursor: pointer;
-            font-size: 34px;
+            font-size: 36px; /* Larger font */
             color: #FFF;
-            transition: background 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+            transition: background 0.3s ease, transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.6);
             font-weight: 700;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
+
         .numeric-pad button:hover {
-            background: #383838;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+            background: #353535;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
         }
+
         .numeric-pad button:active {
             transform: scale(0.93);
             background: #404040;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
         }
+
+        /* Transaction buttons (Request, Pay) */
         .transaction-buttons {
             display: flex;
             justify-content: space-between;
             margin: 0 24px 60px;
             gap: 18px;
         }
+
         .transaction-buttons button {
-            background: #2D2D2D;
+            background: #282828;
             color: #FFF;
             border: none;
             padding: 18px;
@@ -500,87 +637,482 @@
             cursor: pointer;
             font-size: 20px;
             font-weight: 800;
-            transition: background 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+            transition: background 0.3s ease, transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.6);
             text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
+
         .transaction-buttons button:hover {
-            background: #383838;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+            background: #353535;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
         }
+
         .transaction-buttons button:active {
             transform: scale(0.94);
             background: #404040;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
         }
+
+        .transaction-buttons button:disabled {
+            background: #1A1A1A;
+            color: #555;
+            cursor: not-allowed;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.4);
+            transform: none;
+        }
+
+        /* Recipient list for Pay/Request flow */
         .recipient-list {
             display: flex;
             flex-direction: column;
             gap: 18px;
             padding: 24px;
         }
+
         .recipient-item {
             display: flex;
             align-items: center;
             padding: 16px;
-            background: linear-gradient(135deg, #1F1F1F, #2B2B2B);
+            background: linear-gradient(135deg, #1A1A1A, #222222);
             border-radius: 18px;
             cursor: pointer;
-            transition: background 0.3s ease, transform 0.2s ease;
+            transition: background 0.3s ease, transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
             box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
+
         .recipient-item .contact-item {
             margin-right: 16px;
+            box-shadow: none;
         }
+
         .recipient-item span {
             font-size: 18px;
             color: #E6E6E6;
             font-weight: 500;
         }
+
         .recipient-item:hover {
-            background: #252525;
+            background: rgba(40, 40, 40, 0.5);
             transform: translateX(6px);
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
         }
+
         .recipient-item:active {
             transform: scale(0.97);
-            background: #2C2C2C;
+            background: rgba(50, 50, 50, 0.6);
         }
+
+        /* Specific styles for the "Add New Recipient" item */
+        .recipient-item.add-new {
+            background: #00C853; /* Brighter green */
+            color: #000;
+            justify-content: center;
+            font-weight: 700;
+            box-shadow: 0 5px 18px rgba(0, 200, 83, 0.5);
+        }
+
+        .recipient-item.add-new span {
+            color: #000;
+        }
+
+        .recipient-item.add-new:hover {
+            background: #00B04A;
+            box-shadow: 0 8px 25px rgba(0, 200, 83, 0.7);
+        }
+
+        .recipient-item.add-new:active {
+            background: #009933;
+            box-shadow: 0 2px 10px rgba(0, 200, 83, 0.4);
+        }
+
+        /* Message box for alerts */
+        .message-box {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #1A1A1A, #222222);
+            padding: 28px; /* More padding */
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.9); /* Stronger shadow */
+            z-index: 100;
+            text-align: center;
+            color: #FFF;
+            font-size: 19px; /* Larger font */
+            font-weight: 500;
+            animation: fadeInScale 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* New animation */
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .message-box button {
+            background: #00C853;
+            color: #000;
+            border: none;
+            padding: 12px 25px; /* More padding */
+            border-radius: 15px; /* Slightly more rounded */
+            margin-top: 25px; /* More margin */
+            cursor: pointer;
+            font-size: 17px; /* Slightly larger */
+            font-weight: 700;
+            transition: background 0.3s ease, transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 4px 15px rgba(0, 200, 83, 0.4);
+        }
+
+        .message-box button:hover {
+            background: #00B04A;
+            box-shadow: 0 6px 20px rgba(0, 200, 83, 0.6);
+        }
+
+        .message-box button:active {
+            transform: scale(0.95);
+        }
+
+        /* Loading spinner */
+        .loading-spinner {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 101;
+        }
+
+        .loading-spinner::after {
+            content: "";
+            display: block;
+            width: 50px; /* Larger spinner */
+            height: 50px;
+            border: 7px solid #00C853; /* Thicker, brighter green */
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite; /* Faster spin */
+        }
+
+        /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: translate(-50%, -40%) scale(0.9); }
+            to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+
         @keyframes slideUp {
             from { transform: translateY(100%); }
             to { transform: translateY(0); }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Specific styles for investment cards */
+        .investment-card .card-amount {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .investment-card .card-amount .icon {
+            font-size: 32px; /* Slightly larger */
+            width: 45px; /* Slightly larger */
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-weight: bold;
+            background: #00C853; /* Brighter green */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+        .investment-card .card-amount .icon.bitcoin { background: #FBC02D; } /* Brighter Bitcoin orange */
+        .investment-card .card-amount .icon.stocks { background: #673AB7; } /* Deeper purple for stocks */
+        .investment-card .card-amount .icon.savings { background: #00C853; } /* Brighter green for savings */
+
+
+        /* Detail screen styles */
+        .detail-screen {
+            display: none;
+            background: rgba(0, 0, 0, 0.95); /* More opaque */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            height: 100%;
+            z-index: 80;
+            overflow-y: auto;
+            animation: slideUp 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            backdrop-filter: blur(18px); /* Even stronger blur */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 24px;
+        }
+
+        .detail-screen.active {
+            display: block;
+        }
+
+        .detail-screen-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            background: #121212; /* Match popup header */
+            padding: 24px 0; /* Padding for header within detail screen */
+            position: sticky;
+            top: 0;
+            z-index: 81;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+        }
+
+        .detail-screen-header h2 {
+            font-size: 28px; /* Larger heading */
+            font-weight: 800;
+            color: #FFF;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .detail-content {
+            background: linear-gradient(135deg, #1A1A1A, #222222);
+            padding: 24px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            color: #E6E6E6;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .detail-content h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #FFF;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .detail-content p {
+            margin-bottom: 10px;
+        }
+
+        .detail-content .chart-placeholder {
+            width: 100%;
+            height: 150px;
+            background: #282828;
+            border-radius: 10px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #A0A0A0;
+            border: 1px dashed #404040; /* Dashed border for placeholder */
+        }
+
+        .detail-content .action-buttons {
+            margin-top: 20px;
+        }
+
+        .detail-content .toggle-switch {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 20px;
+            background: #1A1A1A;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .detail-content .toggle-switch label {
+            font-size: 18px;
+            font-weight: 500;
+            color: #E6E6E6;
+        }
+
+        .detail-content .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .detail-content .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .detail-content .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #555; /* Darker grey for off state */
+            -webkit-transition: .4s;
+            transition: .4s;
+            border-radius: 34px;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.4);
+        }
+
+        .detail-content .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .detail-content input:checked + .slider {
+            background-color: #00C853;
+            box-shadow: inset 0 2px 5px rgba(0, 200, 83, 0.4);
+        }
+
+        .detail-content input:focus + .slider {
+            box-shadow: 0 0 1px #00C853;
+        }
+
+        .detail-content input:checked + .slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .detail-content .slider.round {
+            border-radius: 34px;
+        }
+
+        .detail-content .slider.round:before {
+            border-radius: 50%;
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 375px) {
+            .header {
+                padding: 18px;
+            }
+            .header h1 {
+                font-size: 22px;
+            }
+            .profile-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+            .section {
+                padding: 18px;
+            }
+            .card {
+                padding: 18px;
+                margin-bottom: 18px;
+            }
+            .card-amount {
+                font-size: 36px;
+            }
+            .action-buttons button {
+                font-size: 16px;
+                padding: 14px;
+            }
+            .contact-item {
+                width: 44px;
+                height: 44px;
+                font-size: 18px;
+            }
+            .search-bar {
+                padding: 14px 18px;
+                font-size: 16px;
+            }
+            .nav-item .nav-icon {
+                font-size: 26px;
+            }
+            #amount-display {
+                font-size: 70px;
+                margin: 30px 0;
+            }
+            .numeric-pad button {
+                font-size: 30px;
+                padding: 20px;
+            }
+            .transaction-buttons button {
+                font-size: 18px;
+                padding: 16px;
+            }
+            .popup-content {
+                padding: 18px;
+                margin: 18px;
+            }
+            .popup-content h2 {
+                font-size: 22px;
+            }
+            .popup-content p {
+                font-size: 16px;
+            }
+            .message-box {
+                padding: 20px;
+                font-size: 16px;
+            }
+            .message-box button {
+                padding: 10px 20px;
+                font-size: 15px;
+            }
+            .loading-spinner::after {
+                width: 40px;
+                height: 40px;
+                border-width: 5px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="app-container" id="mainContent">
-        <!-- Header -->
-        <div class="header">
-            <h1 id="headerTitle">Money</h1>
-            <div class="profile-icon" onclick="showProfilePopup()">JD</div>
+        <div class="message-box" id="messageBox">
+            <p id="messageText"></p>
+            <button id="messageBoxOkButton">OK</button>
         </div>
 
-        <!-- Money Section -->
+        <div class="loading-spinner" id="loadingSpinner"></div>
+
+        <div class="header">
+            <h1 id="headerTitle">Money</h1>
+            <div class="profile-icon" id="profileIcon">JD</div>
+        </div>
+
         <div class="section active" id="moneySection">
-            <div class="card">
+            <div class="card" id="cashBalanceCard">
                 <div>
                     <div class="card-title">Cash Balance</div>
-                    <div class="card-amount">$1</div>
+                    <div class="card-amount" id="cashBalanceAmount">$1.51</div>
                     <div class="card-subtext">Account: ****2275 Routing: ****663</div>
                 </div>
                 <span class="card-subtext">></span>
             </div>
             <div class="action-buttons">
-                <button>Add Money</button>
-                <button>Withdraw</button>
+                <button id="addMoneyButton">Add Money</button>
+                <button id="withdrawMoneyButton">Withdraw</button>
             </div>
             <div class="card">
                 <div>
                     <div class="card-title">Paychecks</div>
-                    <div class="card-amount">$128</div>
+                    <div class="card-amount">$128.32</div>
                     <div class="card-subtext">This Month</div>
                 </div>
                 <span class="card-subtext">></span>
@@ -588,110 +1120,100 @@
             <div class="card">
                 <div class="card-title">Save & Invest</div>
             </div>
-            <div class="card">
+            <div class="card investment-card" id="savingsCard">
                 <div>
                     <div class="card-title">Savings</div>
-                    <div class="card-amount">$0</div>
+                    <div class="card-amount" id="savingsAmount">$0.00 <span class="icon savings">$</span></div>
                     <div class="card-subtext">1.5% Interest</div>
                 </div>
-                <span class="card-subtext">$</span>
+                <span class="card-subtext">></span>
             </div>
-            <div class="card">
+            <div class="card investment-card" id="bitcoinCard">
                 <div>
                     <div class="card-title">Bitcoin</div>
-                    <div class="card-amount">$0</div>
-                    <div class="card-subtext">0.00% Today</div>
+                    <div class="card-amount" id="bitcoinAmount">$0.00 <span class="icon bitcoin">₿</span></div>
+                    <div class="card-subtext" id="bitcoinChange">0.00% Today</div>
                 </div>
-                <span class="card-subtext">B</span>
+                <span class="card-subtext">></span>
             </div>
-            <div class="card">
+            <div class="card investment-card" id="stocksCard">
                 <div>
                     <div class="card-title">Stocks</div>
-                    <div class="card-amount">$0</div>
+                    <div class="card-amount" id="stocksAmount">$0.00 <span class="icon stocks">📈</span></div>
                 </div>
-                <span class="card-subtext">^</span>
+                <span class="card-subtext">></span>
             </div>
         </div>
 
-        <!-- Discover Section -->
         <div class="section" id="discoverSection">
-            <input type="text" class="search-bar" placeholder="Search">
+            <input type="text" class="search-bar" placeholder="Search" id="discoverSearchBar">
             <div class="contact-list">
-                <div class="contact-item" style="background: #00D54B;">S</div>
-                <div class="contact-item" style="background: #EA0B8C;">S</div>
-                <div class="contact-item" style="background: #FF69B4;">M</div>
-                <div class="contact-item" style="background: #FF1493;">C</div>
-                <div class="contact-item" style="background: #FFA500;">W</div>
+                <div class="contact-item" data-filter="S" style="background: #00D54B;">S</div>
+                <div class="contact-item" data-filter="S" style="background: #EA0B8C;">S</div>
+                <div class="contact-item" data-filter="M" style="background: #FF69B4;">M</div>
+                <div class="contact-item" data-filter="C" style="background: #FF1493;">C</div>
+                <div class="contact-item" data-filter="W" style="background: #FFA500;">W</div>
             </div>
             <div class="card">
                 <div class="card-title">Recommended Offers</div>
             </div>
-            <div class="offer">
-                <div class="contact-item lyft"></div>
+            <div class="offer" data-offer-title="Lyft 10% Off" data-offer-description="Get 10% off your next Lyft ride. Max discount $5. Valid until 12/31/2025.">
+                <div class="contact-item lyft"><i class="fa-brands fa-lyft"></i></div>
                 <span>Lyft 10% Off</span>
                 <span class="card-subtext">></span>
             </div>
-            <div class="offer">
+            <div class="offer" data-offer-title="Starbucks 5% Off" data-offer-description="Enjoy 5% off your next Starbucks purchase. Max discount $2. Valid until 12/31/2025.">
                 <div class="contact-item starbucks"><i class="fa-solid fa-coffee"></i></div>
                 <span>Starbucks 5% Off</span>
                 <span class="card-subtext">></span>
             </div>
-            <div class="offer">
+            <div class="offer" data-offer-title="7-Eleven 5% Off" data-offer-description="Save 5% on your next 7-Eleven purchase. Max discount $1. Valid until 12/31/2025.">
                 <div class="contact-item seven-eleven"><i class="fa-solid fa-store"></i></div>
                 <span>7-Eleven 5% Off</span>
                 <span class="card-subtext">></span>
             </div>
-            <div class="offer">
+            <div class="offer" data-offer-title="DoorDash 15% Off" data-offer-description="Get 15% off your next DoorDash order. Max discount $7. Valid until 12/31/2025.">
                 <div class="contact-item doordash"><i class="fa-solid fa-utensils"></i></div>
                 <span>DoorDash 15% Off</span>
                 <span class="card-subtext">></span>
             </div>
-            <button class="show-more">Show More Offers</button>
+            <button class="show-more" id="showMoreOffersButton">Show More Offers</button>
         </div>
 
-        <!-- Activity Section -->
         <div class="section" id="activitySection">
-            <input type="text" class="search-bar" placeholder="Search Transactions">
+            <input type="text" class="search-bar" placeholder="Search Transactions" id="activitySearchBar">
             <div class="contact-list">
-                <div class="contact-item" style="background: #00D54B;">+</div>
-                <div class="contact-item" style="background: #9370DB;">🚗</div>
-                <div class="contact-item" style="background: #FFFFFF;">U</div>
-                <div class="contact-item" style="background: #9370DB;">🏋️</div>
-                <div class="contact-item" style="background: #FF0000;">🍎</div>
+                <div class="contact-item" data-filter-query="" style="background: #00D54B;">+</div>
+                <div class="contact-item" data-filter-query="CSC" style="background: #9370DB;">🚗</div>
+                <div class="contact-item uber-icon" data-filter-query="Uber">U</div>
+                <div class="contact-item" data-filter-query="Gym" style="background: #9370DB;">🏋️</div>
+                <div class="contact-item apple-icon" data-filter-query="Apple">🍎</div>
             </div>
             <div class="card">
                 <div class="card-title">Pending</div>
             </div>
-            <div class="activity-item" onclick="showTransactionPopup('CSC Serviceworks Ultra 2', '$2', 'Cash App Card 9:05 PM', 'Pending service charge')">
-                <div class="contact-item" style="background: #9370DB;">🚗</div>
-                <div>
-                    <div>CSC Serviceworks Ultra 2</div>
-                    <div class="card-subtext">Cash App Card 9:05 PM</div>
+            <div id="pendingActivityList">
                 </div>
-                <div>$2</div>
-            </div>
-            <div class="activity-item" onclick="showTransactionPopup('Uber', '$10', 'Cash App Card 6:07 PM', 'Ride payment')">
-                <div class="contact-item" style="background: #FFFFFF;">U</div>
-                <div>
-                    <div>Uber</div>
-                    <div class="card-subtext">Cash App Card 6:07 PM</div>
-                </div>
-                <div>$10</div>
-            </div>
             <div class="card">
                 <div class="card-title">Today</div>
             </div>
-            <div class="activity-item" onclick="showTransactionPopup('New Device Login', '', 'Verified Today at 9:07 PM', 'Security verification')">
-                <div class="contact-item" style="background: #00D54B;">✔️</div>
-                <div>
-                    <div>New Device Login</div>
-                    <div class="card-subtext">Verified Today at 9:07 PM</div>
+            <div id="todayActivityList">
+                <div class="activity-item" data-tx-name="New Device Login" data-tx-amount="" data-tx-details="Verified Today at 9:07 PM" data-tx-fulldetails="Security verification for a new device login. If this was not you, please contact support immediately.">
+                    <div class="contact-item" style="background: #00D54B;">✔️</div>
+                    <div>
+                        <div>New Device Login</div>
+                        <div class="card-subtext">Verified Today at 9:07 PM</div>
+                    </div>
+                    <span class="card-subtext">></span>
                 </div>
-                <span class="card-subtext">></span>
             </div>
+            <div class="card">
+                <div class="card-title">This Month</div>
+            </div>
+            <div id="thisMonthActivityList">
+                </div>
         </div>
 
-        <!-- Card Section -->
         <div class="section" id="cardSection">
             <div class="card-image">
                 <div class="card-details">**** **** **** 7099</div>
@@ -699,52 +1221,64 @@
                 <span class="visa"><i class="fa-brands fa-cc-visa"></i></span>
             </div>
             <div class="card-actions">
-                <button>Lock Card</button>
-                <button>Copy Number</button>
+                <button id="lockCardButton">Lock Card</button>
+                <button id="copyCardNumberButton">Copy Number</button>
             </div>
-            <div class="card">
+            <div class="card" id="exploreOffersCard">
                 <div>
                     <div class="card-title">Explore All Offers</div>
                     <div class="card-subtext">Instant Discounts</div>
                 </div>
                 <span class="card-subtext">></span>
             </div>
-            <div class="card">
+            <div class="card" id="mySpendCard">
                 <div>
                     <div class="card-title">My Spend</div>
-                    <div class="card-subtext">Insights & Activity $140 in May</div>
+                    <div class="card-subtext">Insights & Activity <span id="mySpendAmount">$140</span> in May</div>
+                </div>
+                <span class="card-subtext">></span>
+            </div>
+            <div class="card" id="roundUpsCard">
+                <div>
+                    <div class="card-title">Round Ups</div>
+                    <div class="card-subtext" id="roundUpsStatus">Off</div>
+                </div>
+                <span class="card-subtext">></span>
+            </div>
+            <div class="card" id="overdraftCard">
+                <div>
+                    <div class="card-title">Free Overdraft Coverage</div>
+                    <div class="card-subtext">New</div>
                 </div>
                 <span class="card-subtext">></span>
             </div>
         </div>
 
-        <!-- Keypad Section -->
-        <div class="section" id="keypadSection" style="display: none;">
+        <div class="section" id="keypadSection">
             <div id="amount-display">$0</div>
             <div class="numeric-pad">
-                <button onclick="updateAmount('1')">1</button>
-                <button onclick="updateAmount('2')">2</button>
-                <button onclick="updateAmount('3')">3</button>
-                <button onclick="updateAmount('4')">4</button>
-                <button onclick="updateAmount('5')">5</button>
-                <button onclick="updateAmount('6')">6</button>
-                <button onclick="updateAmount('7')">7</button>
-                <button onclick="updateAmount('8')">8</button>
-                <button onclick="updateAmount('9')">9</button>
-                <button onclick="updateAmount('.')">.</button>
-                <button onclick="updateAmount('0')">0</button>
-                <button onclick="clearAmount()">←</button>
+                <button data-value="1">1</button>
+                <button data-value="2">2</button>
+                <button data-value="3">3</button>
+                <button data-value="4">4</button>
+                <button data-value="5">5</button>
+                <button data-value="6">6</button>
+                <button data-value="7">7</button>
+                <button data-value="8">8</button>
+                <button data-value="9">9</button>
+                <button data-value=".">.</button>
+                <button data-value="0">0</button>
+                <button data-value="←">←</button>
             </div>
             <div class="transaction-buttons">
-                <button onclick="showRecipientPopup('request')">Request</button>
-                <button onclick="showRecipientPopup('pay')">Pay</button>
+                <button id="requestButton" disabled>Request</button>
+                <button id="payButton" disabled>Pay</button>
             </div>
         </div>
 
-        <!-- Profile Popup -->
         <div class="popup" id="profilePopup">
             <div class="popup-header">
-                <button class="close-btn" onclick="hidePopup('profilePopup')">✕</button>
+                <button class="close-btn" id="closeProfilePopup">✕</button>
                 <h1>Profile</h1>
                 <button class="close-btn" style="visibility: hidden;"></button>
             </div>
@@ -754,47 +1288,92 @@
                 <p>Joined: <span>January 2023</span></p>
                 <p>Email: <span>user@example.com</span></p>
                 <p>Phone: <span>(555) 123-4567</span></p>
+                <button class="show-more" id="editProfileButton">Edit Profile</button>
+                <button class="show-more" id="signOutButton">Sign Out</button>
+
+                <h2 style="margin-top: 30px;">Settings</h2>
+                <div class="card" id="privacySettingsCard">
+                    <div>
+                        <div class="card-title">Privacy & Security</div>
+                    </div>
+                    <span class="card-subtext">></span>
+                </div>
+                <div class="card" id="notificationSettingsCard">
+                    <div>
+                        <div class="card-title">Notifications</div>
+                    </div>
+                    <span class="card-subtext">></span>
+                </div>
+                <div class="card" id="linkedAccountsSettingsCard">
+                    <div>
+                        <div class="card-title">Linked Accounts</div>
+                    </div>
+                    <span class="card-subtext">></span>
+                </div>
             </div>
         </div>
 
-        <!-- Transaction Popup -->
         <div class="popup" id="transactionPopup">
             <div class="popup-header">
-                <button class="close-btn" onclick="hidePopup('transactionPopup')">←</button>
+                <button class="close-btn" id="closeTransactionPopup">←</button>
                 <h1>Transaction</h1>
                 <button class="close-btn" style="visibility: hidden;"></button>
             </div>
             <div class="popup-content" id="transactionDetails"></div>
         </div>
 
-        <!-- Recipient Popup -->
         <div class="popup" id="recipientPopup">
             <div class="popup-header">
-                <button class="close-btn" onclick="hidePopup('recipientPopup')">✕</button>
+                <button class="close-btn" id="closeRecipientPopup">✕</button>
                 <h1>Select Recipient</h1>
                 <button class="close-btn" style="visibility: hidden;"></button>
             </div>
             <div class="popup-content">
-                <div class="recipient-list">
-                    <div class="recipient-item" onclick="selectRecipient('Recipient1')">
-                        <div class="contact-item" style="background: #00D54B;">R1</div>
-                        <span>Recipient1</span>
+                <div class="recipient-list" id="recipientList">
+                    <div class="recipient-item" data-recipient="Alice">
+                        <div class="contact-item" style="background: #00D54B;">A</div>
+                        <span>Alice</span>
                     </div>
-                    <div class="recipient-item" onclick="selectRecipient('Recipient2')">
-                        <div class="contact-item" style="background: #EA0B8C;">R2</div>
-                        <span>Recipient2</span>
+                    <div class="recipient-item" data-recipient="Bob">
+                        <div class="contact-item" style="background: #EA0B8C;">B</div>
+                        <span>Bob</span>
                     </div>
-                    <div class="recipient-item" onclick="addRecipient()">
+                    <div class="recipient-item" data-recipient="Charlie">
+                        <div class="contact-item" style="background: #FF69B4;">C</div>
+                        <span>Charlie</span>
+                    </div>
+                    <div class="recipient-item add-new" id="addRecipientButton">
                         <span>Add New Recipient</span>
                     </div>
                 </div>
-                <button class="show-more" onclick="confirmTransaction()">Confirm</button>
+                <button class="show-more" id="confirmTransactionButton" disabled>Confirm</button>
             </div>
         </div>
 
-        <!-- Navigation Bar -->
+        <div class="popup" id="offerDetailPopup">
+            <div class="popup-header">
+                <button class="close-btn" id="closeOfferDetailPopup">←</button>
+                <h1 id="offerDetailTitle"></h1>
+                <button class="close-btn" style="visibility: hidden;"></button>
+            </div>
+            <div class="popup-content">
+                <p id="offerDetailDescription"></p>
+                <button class="show-more" id="redeemOfferButton">Redeem Offer</button>
+            </div>
+        </div>
+
+        <div class="detail-screen" id="detailScreen">
+            <div class="detail-screen-header">
+                <button class="close-btn" id="closeDetailScreen">←</button>
+                <h2 id="detailScreenTitle"></h2>
+                <button class="close-btn" style="visibility: hidden;"></button>
+            </div>
+            <div class="detail-content" id="detailScreenContent">
+                </div>
+        </div>
+
         <div class="nav-bar">
-            <button class="nav-item active" data-tab="moneySection" onclick="updateNavBalance()">
+            <button class="nav-item active" data-tab="moneySection">
                 <span class="nav-icon" id="balanceIcon">$1</span>
             </button>
             <button class="nav-item" data-tab="cardSection">
@@ -811,138 +1390,5 @@
             </button>
         </div>
     </div>
-
-    <script>
-        let balance = 1.51;
-        let transactions = [
-            { name: 'CSC Serviceworks Ultra 2', amount: '$2', details: 'Cash App Card 9:05 PM', fullDetails: 'Pending service charge, ID: SVC123, Date: May 20, 2025' },
-            { name: 'Uber', amount: '$10', details: 'Cash App Card 6:07 PM', fullDetails: 'Ride payment, ID: UBER456, Date: May 20, 2025' }
-        ];
-        let selectedRecipient = '';
-        let transactionType = 'pay';
-
-        // Navigation
-        document.querySelectorAll('.nav-item').forEach(item => {
-            item.addEventListener('click', () => {
-                document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
-                document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
-                const tab = item.getAttribute('data-tab');
-                document.getElementById(tab).classList.add('active');
-                item.classList.add('active');
-                document.getElementById('headerTitle').textContent = tab === 'moneySection' ? 'Money' :
-                    tab === 'activitySection' ? 'Activity' :
-                    tab === 'cardSection' ? 'Card' : tab === 'discoverSection' ? 'Discover' : 'Send/Request';
-                hideAllPopups();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        });
-
-        function updateNavBalance() {
-            document.getElementById('balanceIcon').textContent = `$${Math.floor(balance)}`;
-        }
-
-        // Popup Management
-        function showPopup(popupId) {
-            hideAllPopups();
-            document.getElementById(popupId).classList.add('active');
-            document.getElementById('mainContent').style.overflow = 'hidden';
-        }
-
-        function hidePopup(popupId) {
-            document.getElementById(popupId).classList.remove('active');
-            document.getElementById('mainContent').style.overflow = 'auto';
-            if (popupId === 'recipientPopup') clearAmount();
-        }
-
-        function hideAllPopups() {
-            document.querySelectorAll('.popup').forEach(popup => popup.classList.remove('active'));
-        }
-
-        // Profile Popup
-        function showProfilePopup() {
-            showPopup('profilePopup');
-        }
-
-        // Transaction Popup
-        function showTransactionPopup(name, amount, details, fullDetails) {
-            document.getElementById('transactionDetails').innerHTML = `
-                <h2>${name}</h2>
-                <p>Amount: <span>${amount}</span></p>
-                <p>Details: <span>${details}</span></p>
-                <p>Info: <span>${fullDetails}</span></p>
-            `;
-            showPopup('transactionPopup');
-        }
-
-        // Keypad Functions
-        let amountValue = '0';
-        function updateAmount(value) {
-            let display = document.getElementById('amount-display');
-            if (value === '←') {
-                amountValue = amountValue.slice(0, -1) || '0';
-            } else if (value === '.' && amountValue.includes('.')) {
-                return;
-            } else if (amountValue === '0' && value !== '.') {
-                amountValue = value;
-            } else {
-                amountValue += value;
-            }
-            display.textContent = '$' + amountValue;
-            display.classList.add('active');
-        }
-
-        function clearAmount() {
-            amountValue = '0';
-            document.getElementById('amount-display').textContent = '$0';
-            document.getElementById('amount-display').classList.remove('active');
-        }
-
-        // Recipient Popup
-        function showRecipientPopup(type) {
-            transactionType = type;
-            showPopup('recipientPopup');
-        }
-
-        function selectRecipient(recipient) {
-            selectedRecipient = recipient;
-        }
-
-        function addRecipient() {
-            const newRecipient = prompt('Enter new recipient name:');
-            if (newRecipient) {
-                selectedRecipient = newRecipient;
-                console.log(`Added ${newRecipient}`);
-            }
-        }
-
-        function confirmTransaction() {
-            if (!selectedRecipient) {
-                alert('Please select a recipient');
-                return;
-            }
-            let amount = parseFloat(amountValue) || 0;
-            if (amount <= 0) {
-                alert('Please enter a valid amount');
-                return;
-            }
-            if (transactionType === 'pay' && amount > balance) {
-                alert('Insufficient funds!');
-                return;
-            }
-            const now = new Date();
-            const dateStr = `${now.toLocaleString('en-US', { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' })}`;
-            transactions.push({
-                name: `${transactionType === 'pay' ? 'Sent to' : 'Requested from'} ${selectedRecipient}`,
-                amount: `$${Math.floor(amount)}`,
-                details: `Cash App ${dateStr}`,
-                fullDetails: `${transactionType === 'pay' ? 'Sent' : 'Requested'} to ${selectedRecipient}, Amount: $${Math.floor(amount)}, Date: ${dateStr}, ID: TX${Math.random().toString(36).substr(2, 5)}`
-            });
-            if (transactionType === 'pay') balance -= amount;
-            updateNavBalance();
-            hidePopup('recipientPopup');
-            document.getElementById('moneySection').classList.add('active');
-            alert(`${transactionType === 'pay' ? 'Paid' : 'Requested'} $${Math.floor(amount)} to ${selectedRecipient} successfully!`);
-        }
-    </script>
 </body>
 </html>
