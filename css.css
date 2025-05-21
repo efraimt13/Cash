@@ -1,0 +1,1121 @@
+/* Base styles and resets */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    background: linear-gradient(135deg, #0A0A0A, #121212); /* Deeper, more subtle dark gradient */
+    color: #E6E6E6;
+    line-height: 1.5; /* Optimized line height for mobile readability */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    touch-action: manipulation; /* Improves touch responsiveness */
+}
+
+/* Main app container */
+.app-container {
+    max-width: 400px; /* Standard mobile width */
+    margin: 0 auto;
+    background: transparent;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-bottom: 68px; /* Space for fixed navigation bar */
+    overflow: hidden; /* Ensure content doesn't overflow */
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.9); /* Overall app container shadow */
+}
+
+/* Header styles */
+.header {
+    background: #121212; /* Slightly darker header */
+    padding: 20px; /* Reduced padding for mobile */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #252525; /* Finer border */
+    position: sticky;
+    top: 0;
+    z-index: 60;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.8); /* More pronounced shadow */
+}
+
+.header h1 {
+    font-size: 24px; /* Slightly smaller for mobile */
+    font-weight: 800;
+    color: #FFF;
+    text-transform: uppercase;
+    letter-spacing: 0.8px; /* Tighter letter spacing */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Subtle text shadow */
+}
+
+/* Profile icon in header */
+.profile-icon {
+    width: 40px; /* Slightly smaller */
+    height: 40px;
+    background: linear-gradient(135deg, #FF407A, #FF8CA1); /* Cash App pink/red gradient */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFF;
+    font-size: 17px; /* Slightly smaller font */
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease; /* Smoother transition */
+    box-shadow: 0 0 12px rgba(255, 64, 122, 0.7); /* More prominent glow */
+    border: 2px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+}
+
+.profile-icon:hover {
+    transform: scale(1.15); /* More pronounced hover */
+    box-shadow: 0 0 20px rgba(255, 64, 122, 0.9);
+}
+
+.profile-icon:active {
+    transform: scale(0.9); /* Deeper press effect */
+    box-shadow: 0 0 8px rgba(255, 64, 122, 0.5);
+}
+
+/* Section styles (for different app screens) */
+.section {
+    padding: 20px; /* Reduced padding for mobile */
+    display: none;
+    animation: fadeIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smoother fade-in */
+}
+
+.section.active {
+    display: block;
+}
+
+/* Card styles */
+.card {
+    background: linear-gradient(135deg, #1A1A1A, #222222); /* Darker, more consistent gradient */
+    padding: 20px; /* Reduced padding for mobile */
+    margin-bottom: 18px; /* Tighter margin */
+    border-radius: 18px; /* Slightly smaller border radius */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7); /* Stronger, softer shadow */
+    backdrop-filter: blur(8px); /* Slightly stronger blur effect */
+    border: 1px solid rgba(255, 255, 255, 0.08); /* Subtle light border */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* More lift */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8); /* More pronounced shadow on hover */
+}
+
+.card:active {
+    transform: scale(0.96); /* Deeper press */
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.5);
+}
+
+.card-title {
+    font-size: 15px; /* Slightly smaller */
+    color: #A0A0A0; /* Slightly darker gray */
+    margin-bottom: 7px; /* Tighter spacing */
+    font-weight: 500;
+}
+
+.card-amount {
+    font-size: 38px; /* Slightly smaller for mobile */
+    font-weight: 800;
+    color: #FFF;
+    letter-spacing: -0.7px; /* Tighter letter spacing */
+    /* Ensure large numbers don't break layout */
+    word-break: break-all; /* Allows breaking words if necessary */
+    white-space: nowrap; /* Prevent wrapping initially */
+    overflow: hidden; /* Hide overflow if it still happens */
+    text-overflow: ellipsis; /* Add ellipsis if content overflows */
+}
+
+.card-subtext {
+    font-size: 13px; /* Slightly smaller */
+    color: #606060; /* Darker subtext */
+    font-weight: 400;
+}
+
+/* Action buttons (e.g., Add Money, Withdraw) */
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px; /* Reduced margin */
+    gap: 12px; /* Reduced gap */
+}
+
+.action-buttons button {
+    background: #282828; /* Darker button background */
+    color: #FFF;
+    border: none;
+    padding: 14px; /* Reduced padding */
+    border-radius: 16px; /* Slightly smaller border radius */
+    width: 49%; /* Adjusted width for smaller gap */
+    cursor: pointer;
+    font-size: 16px; /* Smaller font */
+    font-weight: 700;
+    transition: background 0.3s ease, transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); /* Softer shadow */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.action-buttons button:hover {
+    background: #353535; /* Lighter on hover */
+    box-shadow: 0 7px 22px rgba(0, 0, 0, 0.7);
+}
+
+.action-buttons button:active {
+    transform: scale(0.95); /* More pronounced press */
+    background: #404040;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Contact list for Discover/Activity sections */
+.contact-list {
+    display: flex;
+    overflow-x: auto;
+    padding: 10px 0; /* Reduced padding */
+    gap: 14px; /* Reduced gap */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    -ms-overflow-style: none;  /* Hide scrollbar for IE and Edge */
+}
+
+.contact-list::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Chrome, Safari, Opera */
+}
+
+.contact-item {
+    width: 44px; /* Slightly smaller */
+    height: 44px;
+    border-radius: 50%;
+    background: #00C853; /* Brighter Cash App green */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    font-size: 20px; /* Slightly smaller font */
+    font-weight: 700;
+    flex-shrink: 0; /* Prevent shrinking */
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Specific contact item colors */
+.contact-item.lyft { background: #E91E63; } /* Deeper pink */
+.contact-item.starbucks { background: #00897B; } /* Teal */
+.contact-item.seven-eleven { background: #FFC107; } /* Amber */
+.contact-item.doordash { background: #D32F2F; } /* Darker red */
+.contact-item.uber-icon { background: #FFFFFF; color: #000; } /* Uber icon */
+.contact-item.apple-icon { background: #D32F2F; color: #FFF; } /* Apple red */
+
+.contact-item:hover {
+    transform: scale(1.15);
+    box-shadow: 0 0 18px rgba(0, 0, 0, 0.5);
+}
+
+.contact-item:active {
+    transform: scale(0.93);
+}
+
+/* Offer list item styles */
+.offer {
+    display: flex;
+    align-items: center;
+    padding: 18px 0; /* Reduced padding */
+    border-bottom: 1px solid #252525;
+    transition: background 0.3s ease, transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    cursor: pointer;
+}
+
+.offer .contact-item {
+    margin-right: 18px; /* Reduced margin */
+    box-shadow: none; /* No shadow on offer contact items */
+}
+
+.offer span {
+    font-size: 16px; /* Slightly smaller */
+    color: #E6E6E6;
+    flex-grow: 1;
+    font-weight: 500;
+}
+
+.offer:hover {
+    background: rgba(40, 40, 40, 0.5); /* Subtle highlight */
+    transform: translateX(6px); /* More pronounced slide */
+}
+
+.offer:active {
+    transform: scale(0.99);
+    background: rgba(50, 50, 50, 0.6);
+}
+
+/* Show more button */
+.show-more {
+    background: #282828;
+    color: #FFF;
+    border: none;
+    padding: 14px; /* Reduced padding */
+    border-radius: 16px; /* Slightly smaller border radius */
+    width: 100%;
+    margin-top: 20px; /* Reduced margin */
+    cursor: pointer;
+    font-size: 16px; /* Smaller font */
+    font-weight: 700;
+    transition: background 0.3s ease, transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.show-more:hover {
+    background: #353535;
+    box-shadow: 0 7px 22px rgba(0, 0, 0, 0.7);
+}
+
+.show-more:active {
+    transform: scale(0.96);
+    background: #404040;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Activity item styles */
+.activity-item {
+    display: flex;
+    align-items: center; /* Align items vertically */
+    justify-content: space-between;
+    padding: 18px 0; /* Reduced padding */
+    border-bottom: 1px solid #252525;
+    transition: background 0.3s ease, transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    cursor: pointer;
+}
+
+.activity-item .contact-item {
+    margin-right: 18px; /* Reduced margin */
+    flex-shrink: 0; /* Prevent shrinking */
+    box-shadow: none; /* No shadow on activity contact items */
+}
+
+.activity-item div {
+    flex-grow: 1;
+}
+
+.activity-item .card-subtext {
+    margin-top: 5px; /* Tighter spacing */
+}
+
+/* Ensure transaction amounts in activity feed don't break layout */
+.activity-item .card-amount {
+    font-size: 18px; /* Smaller font for activity amounts */
+    font-weight: 700;
+    flex-shrink: 0; /* Prevent shrinking */
+    white-space: nowrap; /* Prevent wrapping */
+    overflow: hidden; /* Hide overflow */
+    text-overflow: ellipsis; /* Add ellipsis */
+    max-width: 100px; /* Limit width to prevent overflow */
+    text-align: right;
+}
+
+.activity-item:hover {
+    background: rgba(40, 40, 40, 0.5);
+    transform: translateX(6px);
+}
+
+.activity-item:active {
+    transform: scale(0.99);
+    background: rgba(50, 50, 50, 0.6);
+}
+
+/* Card image for physical card display */
+.card-image {
+    background: linear-gradient(135deg, #FF407A, #9B59B6); /* Cash App card gradient */
+    width: 90%; /* Responsive width */
+    max-width: 340px; /* Max width for card */
+    aspect-ratio: 1.586; /* Standard credit card aspect ratio (85.6mm x 53.98mm) */
+    margin: 24px auto; /* Center the card */
+    padding: 20px; /* Adjusted padding */
+    border-radius: 15px; /* Slightly less rounded for a real card feel */
+    color: #FFF;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9); /* Stronger, more diffused shadow */
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;
+    backdrop-filter: blur(10px); /* Stronger blur */
+    border: 1px solid rgba(255, 255, 255, 0.15); /* More visible border */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.card-image:hover {
+    transform: scale(1.03); /* Slightly less pronounced scale for card */
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.95);
+}
+
+.card-image .card-logo {
+    font-size: 28px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.card-image .card-number {
+    font-family: 'Space Mono', monospace; /* Monospace font for card number */
+    font-size: 20px; /* Smaller font for number */
+    letter-spacing: 2px; /* Wider spacing */
+    margin-top: auto; /* Push to bottom */
+    margin-bottom: 10px;
+}
+
+.card-image .card-holder-info {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 12px; /* Very small for details */
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+.card-image .card-holder-name {
+    text-transform: uppercase;
+}
+
+.card-image .visa {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-size: 36px; /* Slightly smaller icon */
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Card action buttons (Lock Card, Copy Number) */
+.card-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px; /* Reduced margin */
+    gap: 12px; /* Reduced gap */
+}
+
+.card-actions button {
+    background: #282828;
+    color: #FFF;
+    border: none;
+    padding: 14px; /* Reduced padding */
+    border-radius: 16px; /* Slightly smaller border radius */
+    width: 49%;
+    cursor: pointer;
+    font-size: 15px; /* Smaller font */
+    font-weight: 700;
+    transition: background 0.3s ease, transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.card-actions button:hover {
+    background: #353535;
+    box-shadow: 0 7px 22px rgba(0, 0, 0, 0.7);
+}
+
+.card-actions button:active {
+    transform: scale(0.95);
+    background: #404040;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Search bar styles */
+.search-bar {
+    width: 100%;
+    padding: 14px 18px; /* Reduced padding */
+    background: #282828; /* Darker background */
+    border: none;
+    border-radius: 16px; /* Slightly smaller border radius */
+    margin-bottom: 18px; /* Reduced margin */
+    color: #FFF;
+    font-size: 16px; /* Smaller font */
+    outline: none;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.5); /* Deeper inset shadow */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.search-bar::placeholder {
+    color: #808080; /* Lighter placeholder text */
+}
+
+.search-bar:focus {
+    background: #353535;
+    box-shadow: 0 0 18px rgba(0, 200, 83, 0.6), inset 0 3px 8px rgba(0, 0, 0, 0.6); /* Green glow on focus */
+}
+
+/* Navigation bar styles */
+.nav-bar {
+    background: #121212;
+    padding: 10px 0; /* Reduced padding */
+    display: flex;
+    justify-content: space-around;
+    border-top: 1px solid #252525;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-width: 400px;
+    margin: 0 auto;
+    z-index: 60;
+    box-shadow: 0 -6px 18px rgba(0, 0, 0, 0.8);
+}
+
+.nav-item {
+    background: none;
+    border: none;
+    color: #606060; /* Darker inactive icon color */
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px; /* Reduced padding */
+    transition: color 0.3s ease, transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.nav-item .nav-icon {
+    font-size: 28px; /* Slightly smaller */
+    margin-bottom: 3px; /* Tighter spacing */
+    transition: color 0.3s ease, transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.nav-item.active .nav-icon {
+    color: #00C853; /* Brighter Cash App green */
+    transform: scale(1.2); /* Slightly less pronounced active state */
+    text-shadow: 0 0 10px rgba(0, 200, 83, 0.6); /* Stronger glow */
+}
+
+.nav-item:hover .nav-icon {
+    color: #A0A0A0; /* Lighter on hover */
+    transform: scale(1.08);
+}
+
+.nav-item:active {
+    transform: scale(0.9); /* Deeper press */
+}
+
+/* Popup styles */
+.popup {
+    display: none;
+    background: rgba(0, 0, 0, 0.9); /* More opaque background */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    height: 100%;
+    z-index: 70;
+    overflow-y: auto;
+    animation: slideUp 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smoother slide-up */
+    backdrop-filter: blur(15px); /* Stronger blur for popups */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.popup.active {
+    display: block;
+}
+
+.popup-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px; /* Reduced padding */
+    border-bottom: 1px solid #252525;
+    background: #121212;
+    position: sticky;
+    top: 0;
+    z-index: 71;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); /* Subtle shadow for popup header */
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: #FFF;
+    font-size: 28px; /* Slightly smaller close button */
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), color 0.3s ease;
+}
+
+.close-btn:hover {
+    color: #00C853;
+    transform: rotate(90deg);
+}
+
+.close-btn:active {
+    transform: scale(0.92) rotate(90deg);
+}
+
+.popup-content {
+    padding: 20px; /* Reduced padding */
+    max-height: 80vh; /* Allow more height for scrollable content */
+    overflow-y: auto;
+    background: linear-gradient(135deg, #1A1A1A, #222222);
+    border-radius: 18px; /* Slightly smaller border radius */
+    margin: 20px; /* Reduced margin */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.8); /* Stronger shadow for popup content */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.popup-content h2 {
+    font-size: 22px; /* Smaller heading */
+    font-weight: 800;
+    color: #FFF;
+    margin-bottom: 18px; /* Reduced margin */
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.popup-content p {
+    font-size: 16px; /* Slightly smaller */
+    color: #E6E6E6;
+    margin: 14px 0; /* Reduced margin */
+    line-height: 1.6;
+}
+
+.popup-content p span {
+    color: #00C853; /* Brighter green for highlights */
+    font-weight: 600;
+}
+
+/* Amount display for keypad */
+#amount-display {
+    font-size: 75px; /* Smaller font size for mobile */
+    text-align: center;
+    color: #FFF;
+    margin: 40px 0; /* Reduced margin */
+    font-weight: 800;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    text-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+#amount-display.active {
+    color: #00C853;
+    text-shadow: 0 0 18px rgba(0, 200, 83, 0.8); /* Stronger glow */
+}
+
+/* Numeric keypad styles */
+.numeric-pad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px; /* Reduced gap */
+    margin: 20px; /* Reduced margin */
+    padding-bottom: 30px; /* Reduced padding */
+}
+
+.numeric-pad button {
+    background: #282828;
+    border: none;
+    padding: 20px; /* Reduced padding */
+    border-radius: 16px; /* Slightly smaller border radius */
+    cursor: pointer;
+    font-size: 32px; /* Smaller font */
+    color: #FFF;
+    transition: background 0.3s ease, transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    font-weight: 700;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.numeric-pad button:hover {
+    background: #353535;
+    box-shadow: 0 7px 22px rgba(0, 0, 0, 0.7);
+}
+
+.numeric-pad button:active {
+    transform: scale(0.94);
+    background: #404040;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Transaction buttons (Request, Pay) */
+.transaction-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 20px 50px; /* Reduced margins */
+    gap: 16px; /* Reduced gap */
+}
+
+.transaction-buttons button {
+    background: #282828;
+    color: #FFF;
+    border: none;
+    padding: 16px; /* Reduced padding */
+    border-radius: 16px; /* Slightly smaller border radius */
+    width: 49%;
+    cursor: pointer;
+    font-size: 18px; /* Smaller font */
+    font-weight: 800;
+    transition: background 0.3s ease, transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.transaction-buttons button:hover {
+    background: #353535;
+    box-shadow: 0 7px 22px rgba(0, 0, 0, 0.7);
+}
+
+.transaction-buttons button:active {
+    transform: scale(0.95);
+    background: #404040;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.transaction-buttons button:disabled {
+    background: #1A1A1A;
+    color: #555;
+    cursor: not-allowed;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.4);
+    transform: none;
+}
+
+/* Recipient list for Pay/Request flow */
+.recipient-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px; /* Reduced gap */
+    padding: 20px; /* Reduced padding */
+}
+
+.recipient-item {
+    display: flex;
+    align-items: center;
+    padding: 14px; /* Reduced padding */
+    background: linear-gradient(135deg, #1A1A1A, #222222);
+    border-radius: 16px; /* Slightly smaller border radius */
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.recipient-item .contact-item {
+    margin-right: 14px; /* Reduced margin */
+    box-shadow: none;
+}
+
+.recipient-item span {
+    font-size: 17px; /* Slightly smaller */
+    color: #E6E6E6;
+    font-weight: 500;
+}
+
+.recipient-item:hover {
+    background: rgba(40, 40, 40, 0.5);
+    transform: translateX(5px);
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.6);
+}
+
+.recipient-item:active {
+    transform: scale(0.98);
+    background: rgba(50, 50, 50, 0.6);
+}
+
+/* Specific styles for the "Add New Recipient" item */
+.recipient-item.add-new {
+    background: #00C853; /* Brighter green */
+    color: #000;
+    justify-content: center;
+    font-weight: 700;
+    box-shadow: 0 5px 18px rgba(0, 200, 83, 0.5);
+}
+
+.recipient-item.add-new span {
+    color: #000;
+}
+
+.recipient-item.add-new:hover {
+    background: #00B04A;
+    box-shadow: 0 7px 25px rgba(0, 200, 83, 0.7);
+}
+
+.recipient-item.add-new:active {
+    background: #009933;
+    box-shadow: 0 2px 10px rgba(0, 200, 83, 0.4);
+}
+
+/* Message box for alerts */
+.message-box {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(135deg, #1A1A1A, #222222);
+    padding: 25px; /* Reduced padding */
+    border-radius: 18px; /* Slightly smaller border radius */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.9); /* Stronger shadow */
+    z-index: 100;
+    text-align: center;
+    color: #FFF;
+    font-size: 17px; /* Smaller font */
+    font-weight: 500;
+    animation: fadeInScale 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* New animation */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.message-box button {
+    background: #00C853;
+    color: #000;
+    border: none;
+    padding: 10px 20px; /* Reduced padding */
+    border-radius: 12px; /* Slightly less rounded */
+    margin-top: 20px; /* Reduced margin */
+    cursor: pointer;
+    font-size: 15px; /* Smaller font */
+    font-weight: 700;
+    transition: background 0.3s ease, transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 3px 12px rgba(0, 200, 83, 0.4);
+}
+
+.message-box button:hover {
+    background: #00B04A;
+    box-shadow: 0 5px 18px rgba(0, 200, 83, 0.6);
+}
+
+.message-box button:active {
+    transform: scale(0.96);
+}
+
+/* Loading spinner */
+.loading-spinner {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 101;
+}
+
+.loading-spinner::after {
+    content: "";
+    display: block;
+    width: 40px; /* Smaller spinner */
+    height: 40px;
+    border: 6px solid #00C853; /* Thicker, brighter green */
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite; /* Faster spin */
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); } /* Smaller translateY */
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInScale {
+    from { opacity: 0; transform: translate(-50%, -45%) scale(0.85); } /* Smaller scale start */
+    to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Specific styles for investment cards */
+.investment-card .card-amount {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.investment-card .card-amount .icon {
+    font-size: 28px; /* Slightly smaller */
+    width: 40px; /* Slightly smaller */
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    font-weight: bold;
+    background: #00C853; /* Brighter green */
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+}
+.investment-card .card-amount .icon.bitcoin { background: #FBC02D; } /* Brighter Bitcoin orange */
+.investment-card .card-amount .icon.stocks { background: #673AB7; } /* Deeper purple for stocks */
+.investment-card .card-amount .icon.savings { background: #00C853; } /* Brighter green for savings */
+
+
+/* Detail screen styles */
+.detail-screen {
+    display: none;
+    background: rgba(0, 0, 0, 0.95); /* More opaque */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    height: 100%;
+    z-index: 80;
+    overflow-y: auto;
+    animation: slideUp 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    backdrop-filter: blur(18px); /* Even stronger blur */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px; /* Reduced padding */
+}
+
+.detail-screen.active {
+    display: block;
+}
+
+.detail-screen-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px; /* Reduced margin */
+    background: #121212; /* Match popup header */
+    padding: 20px 0; /* Padding for header within detail screen */
+    position: sticky;
+    top: 0;
+    z-index: 81;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+.detail-screen-header h2 {
+    font-size: 24px; /* Smaller heading */
+    font-weight: 800;
+    color: #FFF;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.detail-content {
+    background: linear-gradient(135deg, #1A1A1A, #222222);
+    padding: 20px; /* Reduced padding */
+    border-radius: 18px; /* Slightly smaller border radius */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.8);
+    color: #E6E6E6;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.detail-content h3 {
+    font-size: 20px; /* Smaller heading */
+    margin-bottom: 12px; /* Reduced margin */
+    color: #FFF;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.detail-content p {
+    margin-bottom: 8px; /* Reduced margin */
+}
+
+.detail-content .chart-placeholder {
+    width: 100%;
+    height: 120px; /* Shorter height */
+    background: #282828;
+    border-radius: 10px;
+    margin: 18px 0; /* Reduced margin */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px; /* Smaller font */
+    color: #A0A0A0;
+    border: 1px dashed #404040; /* Dashed border for placeholder */
+}
+
+.detail-content .action-buttons {
+    margin-top: 18px; /* Reduced margin */
+}
+
+.detail-content .toggle-switch {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 18px; /* Reduced margin */
+    background: #1A1A1A;
+    padding: 12px; /* Reduced padding */
+    border-radius: 12px; /* Slightly smaller border radius */
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.detail-content .toggle-switch label {
+    font-size: 16px; /* Smaller font */
+    font-weight: 500;
+    color: #E6E6E6;
+}
+
+.detail-content .switch {
+    position: relative;
+    display: inline-block;
+    width: 50px; /* Smaller switch */
+    height: 28px; /* Smaller switch */
+}
+
+.detail-content .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.detail-content .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #555; /* Darker grey for off state */
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 28px; /* Match switch height */
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.detail-content .slider:before {
+    position: absolute;
+    content: "";
+    height: 22px; /* Smaller slider circle */
+    width: 22px; /* Smaller slider circle */
+    left: 3px; /* Adjusted position */
+    bottom: 3px; /* Adjusted position */
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.detail-content input:checked + .slider {
+    background-color: #00C853;
+    box-shadow: inset 0 2px 5px rgba(0, 200, 83, 0.4);
+}
+
+.detail-content input:focus + .slider {
+    box-shadow: 0 0 1px #00C853;
+}
+
+.detail-content input:checked + .slider:before {
+    -webkit-transform: translateX(22px); /* Adjusted translation */
+    -ms-transform: translateX(22px);
+    transform: translateX(22px);
+}
+
+/* Rounded sliders */
+.detail-content .slider.round {
+    border-radius: 28px;
+}
+
+.detail-content .slider.round:before {
+    border-radius: 50%;
+}
+
+/* Responsive adjustments for very small screens */
+@media (max-width: 320px) {
+    .header {
+        padding: 15px;
+    }
+    .header h1 {
+        font-size: 20px;
+    }
+    .profile-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 15px;
+    }
+    .section {
+        padding: 15px;
+    }
+    .card {
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+    .card-amount {
+        font-size: 34px;
+    }
+    .action-buttons button {
+        font-size: 14px;
+        padding: 12px;
+    }
+    .contact-item {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+    .search-bar {
+        padding: 12px 15px;
+        font-size: 15px;
+    }
+    .nav-item .nav-icon {
+        font-size: 24px;
+    }
+    #amount-display {
+        font-size: 65px;
+        margin: 30px 0;
+    }
+    .numeric-pad button {
+        font-size: 28px;
+        padding: 18px;
+    }
+    .transaction-buttons button {
+        font-size: 16px;
+        padding: 14px;
+    }
+    .popup-content {
+        padding: 15px;
+        margin: 15px;
+    }
+    .popup-content h2 {
+        font-size: 20px;
+    }
+    .popup-content p {
+        font-size: 15px;
+    }
+    .message-box {
+        padding: 18px;
+        font-size: 15px;
+    }
+    .message-box button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+    .loading-spinner::after {
+        width: 35px;
+        height: 35px;
+        border-width: 4px;
+    }
+    .card-image .card-number {
+        font-size: 18px;
+        letter-spacing: 1.5px;
+    }
+    .card-image .card-holder-info {
+        font-size: 11px;
+    }
+    .card-image .visa {
+        font-size: 32px;
+    }
+}
