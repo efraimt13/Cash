@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Cash App Clone - Send, spend, save, and invest">
-    <title>Cash App Clone</title>
+    <title>Cash App</title>
     <script src="https://kit.fontawesome.com/66e3b24af0.js" crossorigin="anonymous"></script>
     <style>
         * {
@@ -15,8 +15,8 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
             background-color: #121212;
-            color: #e0e0e0;
-            line-height: 1.5;
+            color: #E0E0E0;
+            line-height: 1.6;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
@@ -30,49 +30,70 @@
             display: flex;
             flex-direction: column;
             position: relative;
-            overflow: hidden;
+            padding-bottom: 80px; /* Space for fixed nav bar */
         }
         .header {
-            background: #121212;
+            background: #1A1A1A;
             padding: 16px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #2a2a2a;
+            border-bottom: 1px solid #2C2C2C;
             position: sticky;
             top: 0;
-            z-index: 20;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+            z-index: 30;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
         }
         .header h1 {
-            margin: 0;
-            font-size: 22px;
-            font-weight: 600;
-            color: #fff;
+            font-size: 24px;
+            font-weight: 700;
+            color: #FFF;
+            text-transform: uppercase;
         }
         .profile-icon {
-            width: 38px;
-            height: 38px;
-            background: linear-gradient(45deg, #ff2d55, #ff6f91);
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #FF2D55, #FF6F91);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #fff;
-            font-size: 16px;
+            color: #FFF;
+            font-size: 18px;
             font-weight: 600;
             cursor: pointer;
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
         .profile-icon:hover {
-            box-shadow: 0 0 10px rgba(255, 45, 85, 0.5);
+            box-shadow: 0 0 12px rgba(255, 45, 85, 0.6);
         }
         .profile-icon:active {
-            transform: scale(0.95);
+            transform: scale(0.93);
+        }
+        .notification-icon {
+            font-size: 24px;
+            color: #FFF;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.2s ease;
+        }
+        .notification-icon:hover {
+            color: #00D54B;
+        }
+        .notification-icon:active {
+            transform: scale(0.9);
+        }
+        .notification-dot {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 10px;
+            height: 10px;
+            background: #FF2D55;
+            border-radius: 50%;
         }
         .section {
             padding: 20px;
-            border-bottom: 1px solid #2a2a2a;
             display: none;
             animation: fadeIn 0.3s ease-in;
         }
@@ -80,117 +101,111 @@
             display: block;
         }
         .card {
-            background: #1c1c1c;
-            padding: 16px;
-            margin-bottom: 15px;
-            border-radius: 14px;
+            background: #1E1E1E;
+            padding: 18px;
+            margin-bottom: 20px;
+            border-radius: 16px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             cursor: pointer;
-            transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-        }
-        .card:hover {
-            transform: translateY(-2px);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
         }
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+        }
         .card:active {
-            transform: scale(0.98);
-            background: #252525;
+            transform: scale(0.97);
         }
         .card-title {
-            font-size: 14px;
-            color: #a0a0a0;
-            margin-bottom: 6px;
+            font-size: 15px;
+            color: #A3A3A3;
+            margin-bottom: 8px;
         }
         .card-amount {
-            font-size: 30px;
+            font-size: 32px;
             font-weight: 700;
-            color: #fff;
+            color: #FFF;
         }
         .card-subtext {
-            font-size: 12px;
-            color: #666;
-            margin-top: 4px;
+            font-size: 13px;
+            color: #757575;
+            margin-top: 6px;
         }
         .action-buttons {
             display: flex;
             justify-content: space-between;
-            margin-top: 20px;
+            margin-top: 24px;
             gap: 12px;
         }
         .action-buttons button {
-            background: #00d54b;
+            background: #00D54B;
             color: #000;
             border: none;
-            padding: 16px;
-            border-radius: 12px;
+            padding: 18px;
+            border-radius: 14px;
             width: 48%;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 17px;
             font-weight: 600;
             transition: background 0.3s ease, transform 0.1s ease, box-shadow 0.2s ease;
-            min-height: 52px;
-            touch-action: manipulation;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            min-height: 56px;
+            box-shadow: 0 3px 8px rgba(0, 213, 75, 0.3);
         }
         .action-buttons button:hover {
-            background: #00e053;
-            box-shadow: 0 4px 12px rgba(0, 213, 75, 0.3);
+            background: #00E053;
+            box-shadow: 0 5px 15px rgba(0, 213, 75, 0.4);
         }
         .action-buttons button:active {
-            transform: scale(0.96);
-            background: #00c744;
+            transform: scale(0.95);
+            background: #00C744;
         }
         .icon {
-            width: 38px;
-            height: 38px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
-            color: #fff;
+            font-size: 22px;
+            color: #FFF;
             transition: transform 0.2s ease;
         }
         .right-arrow-icon {
             background: none;
-            font-size: 22px;
-            color: #00d54b;
+            font-size: 24px;
+            color: #00D54B;
         }
-        .nav-icon {
-            font-size: 28px;
-            margin-bottom: 4px;
-        }
-        .contact-icon { background: #00d54b; }
-        .contact-icon.lyft { background: #00b2e3; }
-        .contact-icon.starbucks { background: #00704a; }
-        .contact-icon.seven-eleven { background: #0066b2; }
-        .contact-icon.topgolf { background: #ff6200; }
-        .bitcoin-icon { background: #00a3e0; }
-        .stocks-icon { background: #9b59b6; }
-        .savings-icon { background: #00d54b; }
+        .contact-icon { background: #00D54B; }
+        .contact-icon.lyft { background: #EA0B8C; } /* Lyft Pink */
+        .contact-icon.starbucks { background: #00704A; }
+        .contact-icon.seven-eleven { background: #F58220; } /* 7-Eleven Orange */
+        .contact-icon.topgolf { background: #FF6200; }
+        .bitcoin-icon { background: #F7931A; } /* Bitcoin Orange */
+        .stocks-icon { background: #9B59B6; }
+        .savings-icon { background: #00D54B; }
         .search-bar {
             width: 100%;
-            padding: 12px 16px;
-            background: #2a2a2a;
+            padding: 14px 18px;
+            background: #2C2C2C;
             border: none;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            color: #fff;
+            border-radius: 14px;
+            margin-bottom: 24px;
+            color: #FFF;
             font-size: 16px;
             outline: none;
             transition: background 0.2s ease, box-shadow 0.2s ease;
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
         }
         .search-bar:focus {
             background: #333;
-            box-shadow: 0 0 8px rgba(0, 213, 75, 0.2);
+            box-shadow: 0 0 10px rgba(0, 213, 75, 0.3);
         }
         .transaction-panel, .popup {
             display: none;
-            background: #1c1c1c;
+            background: #1A1A1A;
             position: fixed;
             top: 0;
             left: 0;
@@ -201,7 +216,7 @@
             z-index: 50;
             overflow-y: auto;
             animation: slideUp 0.4s ease-out;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
         }
         .transaction-panel.active, .popup.active {
             display: block;
@@ -210,8 +225,8 @@
             display: flex;
             justify-content: space-between;
             padding: 20px;
-            border-bottom: 1px solid #2a2a2a;
-            background: #1c1c1c;
+            border-bottom: 1px solid #2C2C2C;
+            background: #1A1A1A;
             position: sticky;
             top: 0;
             z-index: 51;
@@ -219,182 +234,188 @@
         .close-btn {
             background: none;
             border: none;
-            color: #fff;
-            font-size: 26px;
+            color: #FFF;
+            font-size: 28px;
             cursor: pointer;
             padding: 5px;
             transition: transform 0.2s ease, color 0.2s ease;
         }
         .close-btn:hover {
-            color: #ff2d55;
+            color: #FF2D55;
         }
         .close-btn:active {
-            transform: scale(0.9);
+            transform: scale(0.88);
         }
         #amount {
             width: 100%;
-            padding: 20px;
-            font-size: 70px;
+            padding: 24px;
+            font-size: 72px;
             text-align: center;
-            background: #1c1c1c;
+            background: #1A1A1A;
             border: none;
-            color: #fff;
-            margin: 40px 0 20px;
+            color: #FFF;
+            margin: 40px 0 24px;
             font-weight: 700;
             font-family: 'Helvetica Neue', sans-serif;
             letter-spacing: 1px;
             transition: color 0.2s ease;
         }
         #amount.active {
-            color: #00d54b;
+            color: #00D54B;
         }
         .numeric-pad {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 14px;
+            gap: 16px;
             margin: 20px 15px;
-            padding-bottom: 20px;
+            padding-bottom: 24px;
         }
         .numeric-pad button {
-            background: #2a2a2a;
+            background: #2C2C2C;
             border: none;
-            padding: 20px;
-            border-radius: 12px;
+            padding: 22px;
+            border-radius: 14px;
             cursor: pointer;
-            font-size: 30px;
-            color: #fff;
+            font-size: 32px;
+            color: #FFF;
             transition: background 0.3s ease, transform 0.1s ease, box-shadow 0.2s ease;
-            min-height: 72px;
-            touch-action: manipulation;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            min-height: 76px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
         }
         .numeric-pad button:hover {
             background: #333;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
         }
         .numeric-pad button:active {
-            transform: scale(0.95);
-            background: #3a3a3a;
+            transform: scale(0.94);
+            background: #3A3A3A;
         }
         .transaction-buttons {
             display: flex;
             justify-content: space-between;
-            margin: 0 15px 40px;
+            margin: 0 15px 48px;
             gap: 12px;
         }
         .transaction-buttons button {
-            background: #00d54b;
+            background: #00D54B;
             color: #000;
             border: none;
-            padding: 16px;
+            padding: 18px;
             width: 48%;
-            border-radius: 12px;
+            border-radius: 14px;
             cursor: pointer;
             font-size: 18px;
             font-weight: 600;
             transition: background 0.3s ease, transform 0.1s ease, box-shadow 0.2s ease;
-            min-height: 56px;
-            touch-action: manipulation;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            min-height: 60px;
+            box-shadow: 0 3px 8px rgba(0, 213, 75, 0.3);
         }
         .transaction-buttons button:hover {
-            background: #00e053;
-            box-shadow: 0 4px 12px rgba(0, 213, 75, 0.3);
+            background: #00E053;
+            box-shadow: 0 5px 15px rgba(0, 213, 75, 0.4);
         }
         .transaction-buttons button:active {
-            transform: scale(0.96);
-            background: #00c744;
+            transform: scale(0.95);
+            background: #00C744;
         }
         .transaction-buttons button:disabled {
-            background: #2a2a2a;
+            background: #2C2C2C;
             cursor: not-allowed;
-            opacity: 0.5;
-            color: #666;
+            opacity: 0.6;
+            color: #757575;
         }
         .contact-list {
             display: flex;
             overflow-x: auto;
             padding: 15px 0;
-            gap: 18px;
+            gap: 20px;
             -webkit-overflow-scrolling: touch;
         }
         .contact-item {
             text-align: center;
             flex-shrink: 0;
             cursor: pointer;
-            transition: opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
         }
         .contact-item.selected {
+            transform: scale(1.12);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
             opacity: 1;
-            transform: scale(1.1);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
         }
         .contact-item:not(.selected) {
-            opacity: 0.6;
+            opacity: 0.7;
         }
         .contact-item:hover {
-            transform: scale(1.05);
+            transform: scale(1.07);
             opacity: 0.9;
         }
         .contact-item:active {
-            transform: scale(0.95);
+            transform: scale(0.96);
         }
         .contact-item div {
             font-size: 14px;
-            margin-top: 8px;
-            color: #fff;
+            margin-top: 10px;
+            color: #FFF;
             font-weight: 500;
         }
         .activity-item {
             display: flex;
             justify-content: space-between;
-            padding: 15px 0;
-            border-bottom: 1px solid #2a2a2a;
+            padding: 16px 0;
+            border-bottom: 1px solid #2C2C2C;
             transition: background 0.2s ease, transform 0.1s ease;
             cursor: pointer;
         }
         .activity-item:hover {
             background: #252525;
-            transform: translateX(4px);
+            transform: translateX(5px);
         }
         .activity-item:active {
-            background: #2a2a2a;
-            transform: scale(0.99);
+            transform: scale(0.98);
+            background: #2A2A2A;
         }
         .activity-details {
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 16px;
         }
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #FF2D55;
+        }
+        .status-dot.pending { background: #FFAA00; }
+        .status-dot.completed { background: #00D54B; }
         .offer {
             display: flex;
             align-items: center;
-            padding: 15px 0;
+            padding: 16px 0;
             transition: background 0.2s ease, transform 0.1s ease;
             cursor: pointer;
         }
         .offer:hover {
             background: #252525;
-            transform: translateX(4px);
+            transform: translateX(5px);
         }
         .offer:active {
-            background: #2a2a2a;
-            transform: scale(0.99);
+            transform: scale(0.98);
+            background: #2A2A2A;
         }
         .offer .contact-icon {
-            margin-right: 14px;
+            margin-right: 16px;
         }
         .card-section .lock-icon {
-            font-size: 50px;
-            color: #999;
+            font-size: 52px;
+            color: #757575;
             margin: 30px 0;
             transition: transform 0.2s ease, color 0.2s ease;
         }
         .card-section .lock-icon:hover {
-            color: #00d54b;
+            color: #00D54B;
         }
         .card-section .lock-icon:active {
-            transform: scale(0.95);
+            transform: scale(0.93);
         }
         .card-image-container {
             position: relative;
@@ -403,97 +424,120 @@
         }
         .card-image {
             width: 100%;
-            max-width: 350px;
-            height: 200px;
-            border-radius: 16px;
-            background: linear-gradient(135deg, #ff2d55, #9b59b6);
+            max-width: 360px;
+            height: 210px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, #FF2D55, #9B59B6);
             padding: 24px;
-            color: #fff;
+            color: #FFF;
             font-size: 16px;
             text-align: left;
             position: relative;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .card-image:hover {
-            transform: scale(1.02);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
+            transform: scale(1.03);
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.7);
         }
         .card-image .visa {
             position: absolute;
             top: 24px;
             right: 24px;
-            font-size: 28px;
+            font-size: 30px;
         }
         .card-image .card-details {
             margin-top: 60px;
-            font-size: 18px;
+            font-size: 20px;
             letter-spacing: 2px;
         }
         .card-image .card-holder {
-            margin-top: 10px;
+            margin-top: 12px;
             font-size: 14px;
             text-transform: uppercase;
         }
         .card-image .card-exp-cvv {
-            margin-top: 10px;
+            margin-top: 12px;
             font-size: 12px;
         }
         .card-actions {
             display: flex;
             justify-content: center;
-            gap: 12px;
-            margin-top: 15px;
+            gap: 16px;
+            margin-top: 20px;
         }
         .card-actions button {
-            background: #2a2a2a;
-            color: #fff;
+            background: #2C2C2C;
+            color: #FFF;
             border: none;
-            padding: 12px 20px;
-            border-radius: 10px;
+            padding: 14px 24px;
+            border-radius: 12px;
             cursor: pointer;
-            font-size: 14px;
-            font-weight: 500;
+            font-size: 15px;
+            font-weight: 600;
             transition: background 0.3s ease, transform 0.1s ease, box-shadow 0.2s ease;
-            min-height: 48px;
-            touch-action: manipulation;
+            min-height: 50px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
         }
         .card-actions button:hover {
             background: #333;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
         }
         .card-actions button:active {
-            transform: scale(0.96);
-            background: #3a3a3a;
+            transform: scale(0.95);
+            background: #3A3A3A;
         }
         .card-actions button.locked {
-            background: #ff2d55;
+            background: #FF2D55;
         }
         .card-actions button.locked:hover {
-            background: #ff4d75;
+            background: #FF4D75;
         }
         .card-actions button i {
-            font-size: 16px;
+            font-size: 18px;
+        }
+        .toast {
+            position: fixed;
+            bottom: 90px; /* Above nav bar */
+            left: 50%;
+            transform: translateX(-50%);
+            background: #00D54B;
+            color: #000;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0, 213, 75, 0.3);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 60;
+        }
+        .toast.active {
+            opacity: 1;
         }
         .nav-bar {
-            background: #121212;
-            padding: 10px 0;
+            background: #1A1A1A;
+            padding: 12px 0;
             display: flex;
             justify-content: space-around;
-            border-top: 1px solid #2a2a2a;
-            position: sticky;
+            border-top: 1px solid #2C2C2C;
+            position: fixed;
             bottom: 0;
-            z-index: 20;
-            box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.5);
+            left: 0;
+            right: 0;
+            max-width: 400px;
+            margin: 0 auto;
+            z-index: 30;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.6);
         }
         .nav-item {
             background: none;
             border: none;
-            color: #999;
-            font-size: 11px;
+            color: #757575;
+            font-size: 12px;
             cursor: pointer;
             display: flex;
             flex-direction: column;
@@ -503,81 +547,102 @@
             touch-action: manipulation;
         }
         .nav-item .nav-icon {
-            font-size: 28px;
-            margin-bottom: 4px;
+            font-size: 30px;
+            margin-bottom: 6px;
             transition: color 0.2s ease, transform 0.2s ease;
         }
         .nav-item.active {
-            color: #fff;
+            color: #FFF;
         }
         .nav-item:hover {
-            color: #ccc;
+            color: #A3A3A3;
         }
         .nav-item.active .nav-icon {
-            color: #00d54b;
-            transform: scale(1.1);
+            color: #00D54B;
+            transform: scale(1.15);
         }
         .nav-item:active {
-            transform: scale(0.95);
-        }
-        .notification-dot {
-            position: absolute;
-            top: 2px;
-            right: 12px;
-            width: 8px;
-            height: 8px;
-            background: #ff2d55;
-            border-radius: 50%;
+            transform: scale(0.93);
         }
         .transaction-history {
-            margin-top: 20px;
+            margin-top: 24px;
+        }
+        .see-all {
+            font-size: 14px;
+            color: #00D54B;
+            text-align: right;
+            margin-top: 8px;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+        .see-all:hover {
+            color: #00E053;
+        }
+        .see-all:active {
+            color: #00C744;
         }
         .spend-breakdown {
-            background: #1c1c1c;
-            padding: 16px;
-            border-radius: 14px;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            background: #1E1E1E;
+            padding: 18px;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
         }
         .spend-breakdown h4 {
             font-size: 16px;
             font-weight: 600;
-            color: #fff;
-            margin-bottom: 10px;
+            color: #FFF;
+            margin-bottom: 12px;
         }
         .spend-item {
             display: flex;
             justify-content: space-between;
-            padding: 8px 0;
+            padding: 10px 0;
             font-size: 14px;
-            color: #e0e0e0;
+            color: #E0E0E0;
         }
         .spend-item span:first-child {
-            color: #a0a0a0;
+            color: #A3A3A3;
         }
         .popup-content {
             padding: 20px;
+            max-height: 70vh;
+            overflow-y: auto;
         }
         .popup-content h2 {
-            font-size: 20px;
-            font-weight: 600;
-            color: #fff;
-            margin-bottom: 15px;
+            font-size: 22px;
+            font-weight: 700;
+            color: #FFF;
+            margin-bottom: 16px;
+            text-transform: uppercase;
         }
         .popup-content p {
             font-size: 16px;
-            color: #e0e0e0;
-            margin: 10px 0;
+            color: #E0E0E0;
+            margin: 12px 0;
+            line-height: 1.5;
         }
         .popup-content p span {
-            color: #00d54b;
+            color: #00D54B;
             font-weight: 500;
         }
-        h2, h3 {
-            font-size: 18px;
-            font-weight: 600;
-            margin: 20px 0 10px;
-            color: #fff;
+        .loading-spinner {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 4px solid #2C2C2C;
+            border-top: 4px solid #00D54B;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            z-index: 100;
+        }
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
         }
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -594,8 +659,15 @@
         <!-- Header -->
         <div class="header">
             <h1 id="headerTitle">Money</h1>
+            <div class="notification-icon" onclick="showNotifications()">
+                <i class="fa-solid fa-bell"></i>
+                <span class="notification-dot"></span>
+            </div>
             <div class="profile-icon" onclick="showProfile()">JD</div>
         </div>
+
+        <!-- Loading Spinner -->
+        <div class="loading-spinner" id="loadingSpinner"></div>
 
         <!-- Money Section -->
         <div class="section active" id="moneySection">
@@ -603,7 +675,7 @@
                 <div>
                     <div class="card-title">Cash Balance</div>
                     <div class="card-amount" id="balance">$15.18</div>
-                    <div class="card-subtext">Account: **9876 · Routing: **5432</div>
+                    <div class="card-subtext">Account: ****9876 · Routing: ****5432</div>
                 </div>
                 <span class="icon right-arrow-icon"><i class="fa-solid fa-angle-right"></i></span>
             </div>
@@ -613,49 +685,8 @@
             </div>
             <div class="transaction-history" id="moneyTransactions">
                 <h3>Recent Transactions</h3>
-                <!-- Dynamically populated -->
-            </div>
-        </div>
-
-        <!-- Paychecks Section -->
-        <div class="section" id="paychecksSection">
-            <div class="card">
-                <div>
-                    <div class="card-title">Paychecks</div>
-                    <div class="card-amount">$128.32</div>
-                    <div class="card-subtext">This month</div>
-                </div>
-                <span class="icon right-arrow-icon"><i class="fa-solid fa-angle-right"></i></span>
-            </div>
-        </div>
-
-        <!-- Invest Section -->
-        <div class="section" id="investSection">
-            <h2>Save & Invest</h2>
-            <div class="card">
-                <div>
-                    <div class="card-title">Savings</div>
-                    <div class="card-amount">$0.00</div>
-                    <div class="card-subtext">1.5% interest</div>
-                </div>
-                <span class="icon savings-icon">$</span>
-            </div>
-            <div class="card">
-                <div>
-                    <div class="card-title">Bitcoin</div>
-                    <div class="card-amount">$0.00</div>
-                    <div class="card-subtext">0.00% today</div>
-                </div>
-                <span class="icon bitcoin-icon">₿</span>
-            </div>
-            <div class="card">
-                <div>
-                    <div>
-                        <div class="card-title">Stocks</div>
-                        <div class="card-amount">$0.00</div>
-                    </div>
-                </div>
-                <span class="icon stocks-icon"><i class="fa-solid fa-chart-line"></i></span>
+                <div id="dynamicTransactions"></div>
+                <div class="see-all" onclick="showAllTransactions()">See All</div>
             </div>
         </div>
 
@@ -669,6 +700,7 @@
                         <div>Uber</div>
                         <div class="card-subtext">Cash App Card · May 19, 2025</div>
                     </div>
+                    <span class="status-dot pending"></span>
                 </div>
                 <div>$12.90</div>
             </div>
@@ -679,6 +711,7 @@
                         <div>Npgs Main St</div>
                         <div class="card-subtext">Cash App Card · May 19, 2025</div>
                     </div>
+                    <span class="status-dot pending"></span>
                 </div>
                 <div>$6.04</div>
             </div>
@@ -690,6 +723,7 @@
                         <div>Abc P Planet Fitnes</div>
                         <div class="card-subtext">Cash App Card · May 19, 2025</div>
                     </div>
+                    <span class="status-dot completed"></span>
                 </div>
                 <div>$15.99</div>
             </div>
@@ -700,6 +734,7 @@
                         <div>Apple Cash Inst Xfer</div>
                         <div class="card-subtext">Cash App Card · May 19, 2025</div>
                     </div>
+                    <span class="status-dot completed"></span>
                 </div>
                 <div>$2.22</div>
             </div>
@@ -710,10 +745,50 @@
                         <div>Canva I</div>
                         <div class="card-subtext">Cash App Card · May 18, 2025</div>
                     </div>
+                    <span class="status-dot"></span>
                 </div>
-                <div>$15</div>
+                <div>$15.00</div>
             </div>
-            <div id="dynamicTransactions"></div>
+        </div>
+
+        <!-- Discover Section -->
+        <div class="section" id="discoverSection">
+            <input type="text" class="search-bar" placeholder="Search" oninput="filterContacts(this.value)">
+            <div class="contact-list" id="contactList">
+                <div class="contact-item" data-name="Lyft" onclick="selectContact('Lyft')">
+                    <span class="icon contact-icon lyft"><i class="fa-brands fa-lyft"></i></span>
+                    <div>Lyft</div>
+                </div>
+                <div class="contact-item" data-name="Starbucks" onclick="selectContact('Starbucks')">
+                    <span class="icon contact-icon starbucks"><i class="fa-solid fa-coffee"></i></span>
+                    <div>Starbucks</div>
+                </div>
+                <div class="contact-item" data-name="7Eleven" onclick="selectContact('7Eleven')">
+                    <span class="icon contact-icon seven-eleven"><i class="fa-solid fa-store"></i></span>
+                    <div>7Eleven</div>
+                </div>
+                <div class="contact-item" data-name="Topgolf" onclick="selectContact('Topgolf')">
+                    <span class="icon contact-icon topgolf"><i class="fa-solid fa-golf-ball"></i></span>
+                    <div>Topgolf</div>
+                </div>
+            </div>
+            <h3>Boosts</h3>
+            <div class="offer" onclick="showOfferDetails('Lyft')">
+                <span class="icon contact-icon lyft"><i class="fa-brands fa-lyft"></i></span>
+                <div>Lyft · 10% off</div>
+            </div>
+            <div class="offer" onclick="showOfferDetails('Starbucks')">
+                <span class="icon contact-icon starbucks"><i class="fa-solid fa-coffee"></i></span>
+                <div>Starbucks · 5% off</div>
+            </div>
+            <div class="offer" onclick="showOfferDetails('7-Eleven')">
+                <span class="icon contact-icon seven-eleven"><i class="fa-solid fa-store"></i></span>
+                <div>7-Eleven · 5% off</div>
+            </div>
+            <div class="offer" onclick="showOfferDetails('Topgolf')">
+                <span class="icon contact-icon topgolf"><i class="fa-solid fa-golf-ball"></i></span>
+                <div>Topgolf · 20% off</div>
+            </div>
         </div>
 
         <!-- Card Section -->
@@ -724,18 +799,18 @@
                     <div>Cash Card</div>
                     <div class="card-details">1234 5678 9012 4030</div>
                     <div class="card-holder">Jenny Yair</div>
-                    <div class="card-exp-cvv">CVV 123 · EXP 11/19</div>
+                    <div class="card-exp-cvv">CVV 123 · EXP 11/27</div>
                     <span class="visa"><i class="fa-brands fa-cc-visa"></i></span>
                 </div>
             </div>
             <div class="card-actions">
-                <button onclick="copyCardNumber()"><i class="fa-solid fa-copy"></i> Copy Number</button>
-                <button id="lockButton" class="locked" onclick="toggleCardLock()"><i class="fa-solid fa-lock" id="lockButtonIcon"></i> Unlock Card</button>
+                <button onclick="copyCardNumber()"><i class="fa-solid fa-copy"></i> Copy</button>
+                <button id="lockButton" class="locked" onclick="toggleCardLock()"><i class="fa-solid fa-lock" id="lockButtonIcon"></i> Unlock</button>
             </div>
-            <div class="card" onclick="goToOffers()">
+            <div class="card" onclick="goToBoosts()">
                 <div>
-                    <div>Explore All Offers</div>
-                    <div class="card-subtext">Instant savings</div>
+                    <div>Boosts</div>
+                    <div class="card-subtext">Save at your favorite places</div>
                 </div>
                 <span class="icon right-arrow-icon"><i class="fa-solid fa-angle-right"></i></span>
             </div>
@@ -764,60 +839,6 @@
                     <span>Shopping</span>
                     <span>$40.00</span>
                 </div>
-            </div>
-            <div class="card">
-                <div>
-                    <div>Round Ups</div>
-                    <div class="card-subtext">Off</div>
-                </div>
-                <span class="icon right-arrow-icon"><i class="fa-solid fa-angle-right"></i></span>
-            </div>
-            <div class="card">
-                <div>
-                    <div>Free Overdraft Coverage</div>
-                    <div class="card-subtext">New</div>
-                </div>
-                <span class="icon right-arrow-icon"><i class="fa-solid fa-angle-right"></i></span>
-            </div>
-        </div>
-
-        <!-- Discover Section -->
-        <div class="section" id="discoverSection">
-            <input type="text" class="search-bar" placeholder="Search" oninput="filterContacts(this.value)">
-            <div class="contact-list" id="contactList">
-                <div class="contact-item" data-name="Lyft" onclick="selectContact('Lyft')">
-                    <span class="icon contact-icon lyft"><i class="fa-brands fa-lyft"></i></span>
-                    <div>Lyft</div>
-                </div>
-                <div class="contact-item" data-name="Starbucks" onclick="selectContact('Starbucks')">
-                    <span class="icon contact-icon starbucks"><i class="fa-solid fa-coffee"></i></span>
-                    <div>Starbucks</div>
-                </div>
-                <div class="contact-item" data-name="7Eleven" onclick="selectContact('7Eleven')">
-                    <span class="icon contact-icon seven-eleven"><i class="fa-solid fa-store"></i></span>
-                    <div>7Eleven</div>
-                </div>
-                <div class="contact-item" data-name="Topgolf" onclick="selectContact('Topgolf')">
-                    <span class="icon contact-icon topgolf"><i class="fa-solid fa-golf-ball"></i></span>
-                    <div>Topgolf</div>
-                </div>
-            </div>
-            <h3>Recommended Offers</h3>
-            <div class="offer" onclick="showOfferDetails('Lyft')">
-                <span class="icon contact-icon lyft"><i class="fa-brands fa-lyft"></i></span>
-                <div>Lyft · 10% off</div>
-            </div>
-            <div class="offer" onclick="showOfferDetails('Starbucks')">
-                <span class="icon contact-icon starbucks"><i class="fa-solid fa-coffee"></i></span>
-                <div>Starbucks · 5% off</div>
-            </div>
-            <div class="offer" onclick="showOfferDetails('7-Eleven')">
-                <span class="icon contact-icon seven-eleven"><i class="fa-solid fa-store"></i></span>
-                <div>7-Eleven · 5% off</div>
-            </div>
-            <div class="offer" onclick="showOfferDetails('Topgolf')">
-                <span class="icon contact-icon topgolf"><i class="fa-solid fa-golf-ball"></i></span>
-                <div>Topgolf · 20% off</div>
             </div>
         </div>
 
@@ -871,15 +892,16 @@
         <div class="popup" id="profilePopup">
             <div class="popup-header">
                 <button class="close-btn" onclick="hidePopup('profilePopup')">✕</button>
-                <h1>Account Details</h1>
+                <h1>Profile</h1>
                 <button class="close-btn" style="visibility: hidden;">✕</button>
             </div>
             <div class="popup-content">
-                <h2>Profile</h2>
+                <h2>Account Details</h2>
                 <p>Name: <span>Jenny Yair</span></p>
                 <p>Email: <span>jenny.yair@example.com</span></p>
                 <p>Cashtag: <span>$JennyYair</span></p>
                 <p>Joined: <span>January 2023</span></p>
+                <p>Phone: <span>(555) 123-4567</span></p>
             </div>
         </div>
 
@@ -887,7 +909,7 @@
         <div class="popup" id="transactionDetailsPopup">
             <div class="popup-header">
                 <button class="close-btn" onclick="hidePopup('transactionDetailsPopup')">✕</button>
-                <h1>Transaction Details</h1>
+                <h1>Transaction</h1>
                 <button class="close-btn" style="visibility: hidden;">✕</button>
             </div>
             <div class="popup-content" id="transactionDetailsContent">
@@ -899,7 +921,7 @@
         <div class="popup" id="balanceDetailsPopup">
             <div class="popup-header">
                 <button class="close-btn" onclick="hidePopup('balanceDetailsPopup')">✕</button>
-                <h1>Balance Details</h1>
+                <h1>Balance</h1>
                 <button class="close-btn" style="visibility: hidden;">✕</button>
             </div>
             <div class="popup-content">
@@ -907,9 +929,27 @@
                 <p>Balance: <span id="popupBalance">$15.18</span></p>
                 <p>Account Number: <span>****9876</span></p>
                 <p>Routing Number: <span>****5432</span></p>
-                <p>Last Updated: <span>May 20, 2025 at 08:24 PM EDT</span></p>
+                <p>Last Updated: <span>May 20, 2025 at 08:49 PM EDT</span></p>
             </div>
         </div>
+
+        <!-- Notifications Popup -->
+        <div class="popup" id="notificationsPopup">
+            <div class="popup-header">
+                <button class="close-btn" onclick="hidePopup('notificationsPopup')">✕</button>
+                <h1>Notifications</h1>
+                <button class="close-btn" style="visibility: hidden;">✕</button>
+            </div>
+            <div class="popup-content">
+                <h2>Recent Alerts</h2>
+                <p><span>New Boost:</span> 10% off Lyft rides available now!</p>
+                <p><span>Transaction:</span> $15.99 payment to Abc P Planet Fitnes on May 19, 2025.</p>
+                <p><span>Low Balance:</span> Your balance is below $20.00. Add funds?</p>
+            </div>
+        </div>
+
+        <!-- Toast Notification -->
+        <div class="toast" id="toast">Copied to clipboard!</div>
 
         <!-- Navigation Bar -->
         <div class="nav-bar">
@@ -920,7 +960,6 @@
             <button class="nav-item" data-tab="activitySection">
                 <span class="nav-icon"><i class="fa-regular fa-clock"></i></span>
                 <span>Activity</span>
-                <span class="notification-dot"></span>
             </button>
             <button class="nav-item" data-tab="discoverSection">
                 <span class="nav-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
@@ -943,7 +982,7 @@
             { type: 'pending', icon: '<i class="fa-solid fa-store"></i>', name: 'Npgs Main St', details: 'Cash App Card', amount: 6.04, date: 'May 19, 2025', fullDetails: 'Purchase at Npgs Main St, Time: 14:30 EDT, Status: Pending, Transaction ID: NPGS456, Category: Convenience' },
             { type: 'completed', icon: '<i class="fa-solid fa-dumbbell"></i>', name: 'Abc P Planet Fitnes', details: 'Cash App Card', amount: 15.99, date: 'May 19, 2025', fullDetails: 'Gym membership - Abc P Planet Fitnes, Date: May 19, 2025, Transaction ID: GYM789, Recurring: Yes' },
             { type: 'completed', icon: '<i class="fa-brands fa-apple"></i>', name: 'Apple Cash Inst Xfer', details: 'Cash App Card', amount: 2.22, date: 'May 19, 2025', fullDetails: 'Transfer to Apple Cash, Amount: $2.22, Date: May 19, 2025, Transaction ID: APPLE012, Status: Completed' },
-            { type: 'declined', icon: '<i class="fa-solid fa-paint-brush"></i>', name: 'Canva I', details: 'Cash App Card', amount: 15, date: 'May 18, 2025', fullDetails: 'Attempted purchase at Canva, Reason: Insufficient Funds, Date: May 18, 2025, Transaction ID: CANVA345, Status: Declined' }
+            { type: 'declined', icon: '<i class="fa-solid fa-paint-brush"></i>', name: 'Canva I', details: 'Cash App Card', amount: 15.00, date: 'May 18, 2025', fullDetails: 'Attempted purchase at Canva, Reason: Insufficient Funds, Date: May 18, 2025, Transaction ID: CANVA345, Status: Declined' }
         ];
         let offers = {
             'Lyft': '10% off all rides this month',
@@ -990,6 +1029,11 @@
             showPopup('profilePopup');
         }
 
+        // Notifications Popup
+        function showNotifications() {
+            showPopup('notificationsPopup');
+        }
+
         // Balance Details Popup
         function showBalanceDetails() {
             document.getElementById('popupBalance').textContent = `$${balance.toFixed(2)}`;
@@ -1003,10 +1047,20 @@
                 const content = document.getElementById('transactionDetailsContent');
                 content.innerHTML = `
                     <h2>${tx.name}</h2>
-                    <p>${tx.fullDetails.split(', ').map(detail => `${detail}<br>`).join('')}</p>
+                    <p>${tx.fullDetails.split(', ').map(detail => `<span>${detail}</span><br>`).join('')}</p>
                 `;
                 showPopup('transactionDetailsPopup');
             }
+        }
+
+        // Show All Transactions
+        function showAllTransactions() {
+            document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+            document.getElementById('activitySection').classList.add('active');
+            document.querySelector('[data-tab="activitySection"]').classList.add('active');
+            document.getElementById('headerTitle').textContent = 'Activity';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         // Transaction Panel
@@ -1075,45 +1129,52 @@
         }
 
         function confirmTransaction(type) {
-            let amount = parseFloat(document.getElementById('amount').value.replace('$', ''));
-            if (!amount || amount <= 0) {
-                alert('Please enter a valid amount');
-                return;
-            }
-            if (type === 'send' && !selectedContact) {
-                alert('Please select a contact');
-                return;
-            }
-            const now = new Date();
-            const dateStr = `${now.toLocaleString('en-US', { month: 'long' })} ${now.getDate()}, ${now.getFullYear()} at ${now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' })}`;
-            const transactionId = 'TX' + Math.random().toString(36).substr(2, 9).toUpperCase();
-            if (type === 'send') {
-                if (amount > balance) {
-                    alert('Insufficient funds!');
+            showLoading();
+            setTimeout(() => {
+                let amount = parseFloat(document.getElementById('amount').value.replace('$', ''));
+                if (!amount || amount <= 0) {
+                    alert('Please enter a valid amount');
+                    hideLoading();
                     return;
                 }
-                balance -= amount;
-                transactions.push({ 
-                    type: 'completed', 
-                    icon: '<i class="fa-solid fa-arrow-right"></i>', 
-                    name: `Sent to ${selectedContact}`, 
-                    details: `Cash App · ${dateStr}`, 
-                    amount: -amount,
-                    fullDetails: `Sent to ${selectedContact}, Amount: $${amount.toFixed(2)}, Date: ${dateStr}, Transaction ID: ${transactionId}, Status: Completed`
-                });
-            } else {
-                transactions.push({ 
-                    type: 'pending', 
-                    icon: '<i class="fa-solid fa-arrow-left"></i>', 
-                    name: `Requested from ${selectedContact}`, 
-                    details: `Cash App · ${dateStr}`, 
-                    amount,
-                    fullDetails: `Requested from ${selectedContact}, Amount: $${amount.toFixed(2)}, Date: ${dateStr}, Transaction ID: ${transactionId}, Status: Pending`
-                });
-            }
-            document.getElementById('balance').textContent = `$${balance.toFixed(2)}`;
-            updateTransactionHistory();
-            hideTransaction();
+                if (type === 'send' && !selectedContact) {
+                    alert('Please select a contact');
+                    hideLoading();
+                    return;
+                }
+                const now = new Date();
+                const dateStr = `${now.toLocaleString('en-US', { month: 'long' })} ${now.getDate()}, ${now.getFullYear()} at ${now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' })}`;
+                const transactionId = 'TX' + Math.random().toString(36).substr(2, 9).toUpperCase();
+                if (type === 'send') {
+                    if (amount > balance) {
+                        alert('Insufficient funds!');
+                        hideLoading();
+                        return;
+                    }
+                    balance -= amount;
+                    transactions.push({ 
+                        type: 'completed', 
+                        icon: '<i class="fa-solid fa-arrow-right"></i>', 
+                        name: `Sent to ${selectedContact}`, 
+                        details: `Cash App · ${dateStr}`, 
+                        amount: -amount,
+                        fullDetails: `Sent to ${selectedContact}, Amount: $${amount.toFixed(2)}, Date: ${dateStr}, Transaction ID: ${transactionId}, Status: Completed`
+                    });
+                } else {
+                    transactions.push({ 
+                        type: 'pending', 
+                        icon: '<i class="fa-solid fa-arrow-left"></i>', 
+                        name: `Requested from ${selectedContact}`, 
+                        details: `Cash App · ${dateStr}`, 
+                        amount,
+                        fullDetails: `Requested from ${selectedContact}, Amount: $${amount.toFixed(2)}, Date: ${dateStr}, Transaction ID: ${transactionId}, Status: Pending`
+                    });
+                }
+                document.getElementById('balance').textContent = `$${balance.toFixed(2)}`;
+                updateTransactionHistory();
+                hideTransaction();
+                hideLoading();
+            }, 1000); // Simulate network delay
         }
 
         function updateTransactionHistory() {
@@ -1121,7 +1182,7 @@
             const dynamicTransactions = document.getElementById('dynamicTransactions');
             moneyTransactions.innerHTML = '<h3>Recent Transactions</h3>';
             dynamicTransactions.innerHTML = '';
-            transactions.slice(-5).reverse().forEach(tx => {
+            transactions.slice(-3).reverse().forEach(tx => {
                 const item = document.createElement('div');
                 item.className = 'activity-item';
                 item.setAttribute('data-type', tx.type);
@@ -1133,6 +1194,7 @@
                             <div>${tx.name}</div>
                             <div class="card-subtext">${tx.details}</div>
                         </div>
+                        <span class="status-dot ${tx.type}"></span>
                     </div>
                     <div>$${Math.abs(tx.amount).toFixed(2)}</div>
                 `;
@@ -1161,7 +1223,7 @@
             isCardLocked = !isCardLocked;
             const lockButton = document.getElementById('lockButton');
             const lockButtonIcon = document.getElementById('lockButtonIcon');
-            lockButton.textContent = isCardLocked ? ' Unlock Card' : ' Lock Card';
+            lockButton.textContent = isCardLocked ? ' Unlock' : ' Lock';
             lockButtonIcon.className = isCardLocked ? 'fa-solid fa-lock' : 'fa-solid fa-unlock';
             lockButton.prepend(lockButtonIcon);
             lockButton.classList.toggle('locked', isCardLocked);
@@ -1172,13 +1234,15 @@
         function copyCardNumber() {
             const cardNumber = '1234567890124030';
             navigator.clipboard.writeText(cardNumber).then(() => {
-                alert('Card number copied to clipboard!');
+                const toast = document.getElementById('toast');
+                toast.classList.add('active');
+                setTimeout(() => toast.classList.remove('active'), 2000);
             }).catch(() => {
                 alert('Failed to copy card number. Please try again.');
             });
         }
 
-        function goToOffers() {
+        function goToBoosts() {
             document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
             document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
             document.getElementById('discoverSection').classList.add('active');
@@ -1193,7 +1257,15 @@
         }
 
         function showOfferDetails(offer) {
-            alert(`Offer Details:\n${offer}: ${offers[offer]}`);
+            alert(`Boost Details:\n${offer}: ${offers[offer]}`);
+        }
+
+        function showLoading() {
+            document.getElementById('loadingSpinner').style.display = 'block';
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingSpinner').style.display = 'none';
         }
 
         // Initialize
