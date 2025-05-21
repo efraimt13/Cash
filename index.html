@@ -62,10 +62,11 @@
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            transition: transform 0.2s ease-in-out;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease;
         }
         .profile-icon:active {
             transform: scale(0.95);
+            box-shadow: 0 0 8px rgba(255, 45, 85, 0.5);
         }
         .section {
             padding: 20px;
@@ -85,8 +86,12 @@
             justify-content: space-between;
             align-items: center;
             cursor: pointer;
-            transition: background 0.2s ease, transform 0.1s ease;
+            transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
         }
         .card:active {
             transform: scale(0.98);
@@ -123,10 +128,14 @@
             cursor: pointer;
             font-size: 16px;
             font-weight: 600;
-            transition: background 0.3s ease, transform 0.1s ease;
+            transition: background 0.3s ease, transform 0.1s ease, box-shadow 0.2s ease;
             min-height: 52px;
             touch-action: manipulation;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+        .action-buttons button:hover {
+            background: #00e053;
+            box-shadow: 0 4px 12px rgba(0, 213, 75, 0.3);
         }
         .action-buttons button:active {
             transform: scale(0.96);
@@ -170,11 +179,12 @@
             color: #fff;
             font-size: 16px;
             outline: none;
-            transition: background 0.2s ease;
+            transition: background 0.2s ease, box-shadow 0.2s ease;
             box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
         }
         .search-bar:focus {
             background: #333;
+            box-shadow: 0 0 8px rgba(0, 213, 75, 0.2);
         }
         .transaction-panel {
             display: none;
@@ -211,7 +221,10 @@
             font-size: 26px;
             cursor: pointer;
             padding: 5px;
-            transition: transform 0.2s ease;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+        .close-btn:hover {
+            color: #ff2d55;
         }
         .close-btn:active {
             transform: scale(0.9);
@@ -228,6 +241,10 @@
             font-weight: 700;
             font-family: 'Helvetica Neue', sans-serif;
             letter-spacing: 1px;
+            transition: color 0.2s ease;
+        }
+        #amount.active {
+            color: #00d54b;
         }
         .numeric-pad {
             display: grid;
@@ -244,14 +261,18 @@
             cursor: pointer;
             font-size: 30px;
             color: #fff;
-            transition: background 0.3s ease, transform 0.1s ease;
+            transition: background 0.3s ease, transform 0.1s ease, box-shadow 0.2s ease;
             min-height: 72px;
             touch-action: manipulation;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
         }
+        .numeric-pad button:hover {
+            background: #333;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
         .numeric-pad button:active {
             transform: scale(0.95);
-            background: #333;
+            background: #3a3a3a;
         }
         .transaction-buttons {
             display: flex;
@@ -269,10 +290,14 @@
             cursor: pointer;
             font-size: 18px;
             font-weight: 600;
-            transition: background 0.3s ease, transform 0.1s ease;
+            transition: background 0.3s ease, transform 0.1s ease, box-shadow 0.2s ease;
             min-height: 56px;
             touch-action: manipulation;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+        .transaction-buttons button:hover {
+            background: #00e053;
+            box-shadow: 0 4px 12px rgba(0, 213, 75, 0.3);
         }
         .transaction-buttons button:active {
             transform: scale(0.96);
@@ -295,15 +320,19 @@
             text-align: center;
             flex-shrink: 0;
             cursor: pointer;
-            transition: opacity 0.2s ease, transform 0.2s ease;
+            transition: opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
         }
         .contact-item.selected {
             opacity: 1;
             transform: scale(1.1);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
         }
         .contact-item:not(.selected) {
             opacity: 0.6;
+        }
+        .contact-item:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
         }
         .contact-item:active {
             transform: scale(0.95);
@@ -319,11 +348,16 @@
             justify-content: space-between;
             padding: 15px 0;
             border-bottom: 1px solid #2a2a2a;
-            transition: background 0.2s ease;
+            transition: background 0.2s ease, transform 0.1s ease;
             cursor: pointer;
         }
-        .activity-item:active {
+        .activity-item:hover {
             background: #252525;
+            transform: translateX(4px);
+        }
+        .activity-item:active {
+            background: #2a2a2a;
+            transform: scale(0.99);
         }
         .activity-details {
             display: flex;
@@ -334,11 +368,16 @@
             display: flex;
             align-items: center;
             padding: 15px 0;
-            transition: background 0.2s ease;
+            transition: background 0.2s ease, transform 0.1s ease;
             cursor: pointer;
         }
-        .offer:active {
+        .offer:hover {
             background: #252525;
+            transform: translateX(4px);
+        }
+        .offer:active {
+            background: #2a2a2a;
+            transform: scale(0.99);
         }
         .offer .contact-icon {
             margin-right: 14px;
@@ -347,7 +386,10 @@
             font-size: 50px;
             color: #999;
             margin: 30px 0;
-            transition: transform 0.2s ease;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+        .card-section .lock-icon:hover {
+            color: #00d54b;
         }
         .card-section .lock-icon:active {
             transform: scale(0.95);
@@ -369,10 +411,11 @@
             text-align: left;
             position: relative;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .card-image:hover {
             transform: scale(1.02);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
         }
         .card-image .visa {
             position: absolute;
@@ -394,49 +437,38 @@
             margin-top: 10px;
             font-size: 12px;
         }
-        .toggle-switch {
-            position: absolute;
-            top: 14px;
-            right: 14px;
-            display: inline-block;
-            width: 50px;
-            height: 28px;
+        .card-actions {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 15px;
         }
-        .toggle-switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-        .slider {
-            position: absolute;
+        .card-actions button {
+            background: #2a2a2a;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
             cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #2a2a2a;
-            transition: 0.3s;
-            border-radius: 28px;
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+            font-size: 14px;
+            font-weight: 500;
+            transition: background 0.3s ease, transform 0.1s ease, box-shadow 0.2s ease;
+            min-height: 44px;
+            touch-action: manipulation;
         }
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 24px;
-            width: 24px;
-            left: 2px;
-            bottom: 2px;
-            background: linear-gradient(135deg, #ff2d55, #ff6f91);
-            transition: 0.3s;
-            border-radius: 50%;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        .card-actions button:hover {
+            background: #333;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
         }
-        input:checked + .slider {
-            background-color: #00d54b;
+        .card-actions button:active {
+            transform: scale(0.96);
+            background: #3a3a3a;
         }
-        input:checked + .slider:before {
-            transform: translateX(22px);
-            background: #fff;
+        .card-actions button.locked {
+            background: #ff2d55;
+        }
+        .card-actions button.locked:hover {
+            background: #ff4d75;
         }
         .nav-bar {
             background: #121212;
@@ -465,7 +497,7 @@
         .nav-item .nav-icon {
             font-size: 28px;
             margin-bottom: 4px;
-            transition: color 0.2s ease;
+            transition: color 0.2s ease, transform 0.2s ease;
         }
         .nav-item.active {
             color: #fff;
@@ -475,6 +507,7 @@
         }
         .nav-item.active .nav-icon {
             color: #00d54b;
+            transform: scale(1.1);
         }
         .nav-item:active {
             transform: scale(0.95);
@@ -666,10 +699,10 @@
                     <div class="card-exp-cvv">CVV 123 · EXP 11/19</div>
                     <span class="visa"><i class="fa-brands fa-cc-visa"></i></span>
                 </div>
-                <label class="toggle-switch">
-                    <input type="checkbox" id="cardLock" onchange="toggleCardLock()">
-                    <span class="slider"></span>
-                </label>
+            </div>
+            <div class="card-actions">
+                <button onclick="copyCardNumber()">Copy Number</button>
+                <button id="lockButton" class="locked" onclick="toggleCardLock()">Unlock Card</button>
             </div>
             <div class="card" onclick="goToOffers()">
                 <div>
@@ -865,7 +898,7 @@
 
         // Profile
         function showProfile() {
-            alert('Account Details:\nName: Jenny Yair\nEmail: jenny.yair@example.com\nCashtag: $JennyYair');
+            alert('Account Details:\nName: Jenny Yair\nEmail: jenny.yair@example.com\nCashtag: $JennyYair\nJoined: January 2023');
         }
 
         // Transaction Panel
@@ -886,26 +919,31 @@
             selectedContact = '';
             document.querySelectorAll('.contact-item').forEach(item => item.classList.remove('selected'));
             document.getElementById('mainContent').style.overflow = 'auto';
+            document.getElementById('amount').classList.remove('active');
             updateTransactionButtons();
         }
 
         function updateAmount(value) {
-            let amount = document.getElementById('amount').value.replace('$', '');
+            let amount = document.getElementById('amount');
+            let amountValue = amount.value.replace('$', '');
             if (value === '←') {
-                amount = amount.slice(0, -1) || '0';
-            } else if (value === '.' && amount.includes('.')) {
+                amountValue = amountValue.slice(0, -1) || '0';
+            } else if (value === '.' && amountValue.includes('.')) {
                 return;
-            } else if (amount === '0' && value !== '.') {
-                amount = value;
+            } else if (amountValue === '0' && value !== '.') {
+                amountValue = value;
             } else {
-                amount += value;
+                amountValue += value;
             }
-            document.getElementById('amount').value = '$' + amount;
+            amount.value = '$' + amountValue;
+            amount.classList.add('active');
             updateTransactionButtons();
         }
 
         function clearAmount() {
-            document.getElementById('amount').value = '$0';
+            let amount = document.getElementById('amount');
+            amount.value = '$0';
+            amount.classList.remove('active');
             updateTransactionButtons();
         }
 
@@ -1013,8 +1051,20 @@
 
         function toggleCardLock() {
             isCardLocked = !isCardLocked;
+            const lockButton = document.getElementById('lockButton');
+            lockButton.textContent = isCardLocked ? 'Unlock Card' : 'Lock Card';
+            lockButton.classList.toggle('locked', isCardLocked);
             document.getElementById('lockIcon').innerHTML = isCardLocked ? '<i class="fa-solid fa-lock"></i>' : '<i class="fa-solid fa-unlock"></i>';
             alert(`Card has been ${isCardLocked ? 'locked' : 'unlocked'}!`);
+        }
+
+        function copyCardNumber() {
+            const cardNumber = '1234567890124030';
+            navigator.clipboard.writeText(cardNumber).then(() => {
+                alert('Card number copied to clipboard!');
+            }).catch(() => {
+                alert('Failed to copy card number. Please try again.');
+            });
         }
 
         function showTransactionDetails(name) {
