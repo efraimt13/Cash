@@ -319,6 +319,34 @@
   </div>
 </div>
 
+<!-- ─────────── Account Switcher (bottom sheet) ─────────── -->
+<div class="sheet" id="accountSheet">
+  <div class="sheet-backdrop"></div>          <!-- dim -->
+  <div class="sheet-content">
+      <div class="sheet-handle"></div>        <!-- little grab-bar -->
+      <h2 class="sheet-title">Choose an account</h2>
+
+      <ul class="account-list">
+          <li class="account-item current">
+              <span class="account-avatar">J</span>
+              <div>
+                  <span class="account-name">Jordan&nbsp;&nbsp;Doe</span>
+                  <span class="account-tag">$JordanDoe</span>
+              </div>
+              <i class="fa-solid fa-check account-check"></i>
+          </li>
+
+          <li class="account-item add" id="addBusinessAcct">
+              <span class="account-avatar plus">+</span>
+              <div>
+                  <span class="account-name">New account</span>
+                  <span class="account-tag">Create a business account</span>
+              </div>
+              <i class="fa-solid fa-chevron-right account-chevron"></i>
+          </li>
+      </ul>
+  </div>
+</div>
 
         <div class="popup" id="transactionPopup">
             <div class="popup-header">
